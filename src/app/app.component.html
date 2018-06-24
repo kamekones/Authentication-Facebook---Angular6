@@ -1,20 +1,133 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <a class="navbar-brand" style="margin-left: 10px; margin-top: 1px;" [routerLink]="['/home']">
+                <img width="100px" class="img-responsive" src="assets/img/mebooks.png">
+            </a>
+        </div>
 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#">ประเมินราคาหนังสือ <span class="sr-only">(current)</span></a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                <li *ngIf="!accessToken"><a href="#" data-toggle="modal" data-target="#myModal">ลงชื่อเข้าใช้</a></li>
+                <li class="dropdown" *ngIf="accessToken">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">บัญชีผู้ใช้ <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" [routerLink]="['/profile']"><i class="fa fa-smile-o"></i>&nbsp; สวัสดี {{displayName}}</a></li>
+                        <li><a href="#"><i class="fa fa-briefcase"></i>&nbsp; รายการฝากขาย</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#" (click)="this.auth.signOut()"><span class="glyphicon glyphicon-off"></span>&nbsp; ออกจากระบบ</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal Singin-->
+        <div id="loginbox" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <img class="img-modal" src="assets/img/mebooks.png">
+            </div>
+            <h3>ลงชื่อเข้าใช้งาน</h3>
+            <div class="modal-body">
+                <div style="text-align: center">
+                    <button class="loginBtn loginBtn--facebook" (click)="facebook()"> Login with Facebook </button>
+                </div>
+
+                <!-- <div class="login-or">
+                    <hr class="hr-or">
+                    <span class="span-or">or</span>
+                </div>
+
+                <form role="form" [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="form-group">
+                        <label for="inputUsernameEmail">Email</label>
+                        <input type="text" class="form-control" id="inputUsernameEmail" placeholder="Email" formControlName="email">
+                    </div>
+                    <div class="form-group">
+                        <a class="pull-right" href="#">Forgot password?</a>
+                        <label for="inputPassword">Password</label>
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" formControlName="password">
+                    </div>
+                    <div class="checkbox ">
+                        <label>
+                      <input type="checkbox">
+                      Remember me </label>
+                    </div>
+                    <p>ยังไม่มีบัญชีผู้ใช้ใช่ไหม? <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">ลงทะเบียนที่นี่</a></p>
+                    <button type="submit" class="btn btn btn-primary">
+                    Log In
+                  </button>
+
+                </form>-->
+
+            </div>
+            <br>
+        </div>
+
+        <!-- Modal Signup
+        <div class="modal-content" id="signupbox" style="display:none;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <img class="img-modal" src="assets/img/mebooks.png">
+            </div>
+            <div class="modal-body">
+
+                <h3>สมัครสมาชิก</h3>
+                <div class="login-or">
+                    <hr class="hr-or">
+                </div>
+
+                <form role="form" [formGroup]="userForm" (ngSubmit)="signup()">
+                    <div class="form-group">
+                        <label>ชื่อ</label>
+                        <input type="name" class="form-control" placeholder="ชื่อ" formControlName="fnameSignup">
+                    </div>
+                    <div class="form-group">
+                        <label>นามสกุล</label>
+                        <input type="name" class="form-control" placeholder="นามสกุล" formControlName="lnameSignup">
+                    </div>
+                    <div class="form-group">
+                        <label>โทรศัพท์มือถือ</label>
+                        <input type="name" class="form-control" placeholder="08XXXXXXXX" formControlName="telSignup">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail">อีเมล</label>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="อีเมล" formControlName="emailSignup">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPasswordSignup">รหัสผ่าน</label>
+                        <input type="password" class="form-control" id="inputPasswordSignup" placeholder="อย่างน้อง 6 ตัว" formControlName="passwordSignup">
+                    </div>
+
+                    <br>
+                    <button type="submit" class="btn btn btn-primary">
+                    Register
+                  </button>
+                </form>
+                <br>
+                <p>ถ้ามีบัญชีผู้ใช้แล้ว <a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">เข้าสู่ระบบที่นี่</a>
+            </div>
+            <br>
+        </div>-->
+    </div>
+</div>
+
+<router-outlet></router-outlet>
