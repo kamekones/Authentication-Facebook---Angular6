@@ -1,0 +1,167 @@
+<div class="container">
+    <h1 class="panel-title" id="main">
+        <a [routerLink]="['']">หน้าแรก</a> > <a>รายการขายของฉัน</a>
+    </h1>
+    <br>
+    <div>
+        <table border="0" width="100%">
+            <tr>
+                <td class="text-sell">
+                    <h4>รายการขาย</h4>
+                </td>
+                <td align="right">
+                    <button class="btn btn-info btn-lg btn3d" data-toggle="modal" data-target="#sellModal">
+                  <span class="glyphicon glyphicon-pencil"></span> สร้างรายการขาย</button>
+                </td>
+            </tr>
+        </table>
+        <br>
+    </div>
+
+    <!-- <div class="row">
+        <div class="col-lg-2">
+            <input type="search" id="search" value="" class="form-control" placeholder="ค้นหาชื่อสินค้า">
+        </div>
+        <div class="col-lg-3">
+            <input type="search" id="search" value="" class="form-control" placeholder="ค้นหาหมวดหมู่สินค้า">
+        </div>
+    </div> -->
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th>ชื่อสินค้า</th>
+                        <th>หมวดหมู่</th>
+                        <th>ราคา</th>
+                        <th>แก้ไข/ลบ</th>
+                        <th>สถานะ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+        </div>
+    </div>
+</div>
+
+<!--Modal Singin-->
+<div class="modal fade" id="sellModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal Sell Form-->
+        <div id="loginbox" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3>สร้างรายการขาย</h3>
+            </div>
+
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="inputUsernameEmail">ชื่อหนังสือ</label>
+                        <input type="text" class="form-control" id="inputUsernameEmail" placeholder="ชื่อหนังสือ" name="email" ng-model="controller.field.username">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">ราคา</label>
+                        <input type="password" class="form-control" id="inputPassword" placeholder="ราคาที่ต้องการขาย" name="password" ng-model="controller.field.password" ng-enter="controller.submit()">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="category">หมวดหมู่</label>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">วิศวกรรมศาสตร์</label>
+                        </div>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">พื้นฐานวิศวกรรมศาสตร์</label>
+                        </div>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">เตรียมสอบมัธยม</label>
+                        </div>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">การเขียนโปรแกรม/เทคโนโลยี</label>
+                        </div>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">ภาษาต่างประเทศ</label>
+                        </div>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">ธุรกิจ/การตลาด</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputYear">ปีที่พิมพ์</label>
+                        <input type="text" class="form-control" id="inputYear" placeholder="พ.ศ." name="ํYear">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="category">สภาพหนังสือ</label>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">เปียกน้ำ/คราบ</label>
+                        </div>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">รอยขีดเขียน</label>
+                        </div>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">รอยยับ</label>
+                        </div>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">รอยฉีกขาด</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputCover">ภาพหน้าปกหนังสือ</label>
+                        <input type="file" class="form-control" id="inputCover" name="cover">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputFile">ภาพภายในหนังสือ 5 รูป</label>
+                        <input type="file" class="form-control" id="inputFile" max="5" min="1" name="detailImage" multiple>
+                    </div>
+                    <div class="form-group">
+                        <label for="detailBook">รายละเอียด</label>
+                        <textarea type="text" placeholder="รายละเอียดหนังสือ" name="detail" id="" cols="5" rows="5" type="file" class="form-control"></textarea>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="category">เลือกวิธีที่ส่งที่สินค้า</label>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">ตีพิมพ์ลงทะเบียน(ไปรษณีย์ไทย)</label>
+                        </div>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">EMS(ไปรษณีย์ไทย)</label>
+                        </div>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">Kerry Express</label>
+                        </div>
+                        <div class="form-check" id="category">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="engineering">SCG Express</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div style="text-align:center;">
+                        <button type="button" class="btn btn-success btn-lg btn3d" ng-click="controller.submit()">บันทึก</button>
+                    </div>
+                </form>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

@@ -18,7 +18,7 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profiles/profile.component';
-import { ErrorComponent } from './errorPage/error.component';
+import { SellComponent } from './sell/sell.component';
 
 import { DataService } from './services/data.service';
 import { AuthService } from './providers/auth.service';
@@ -42,7 +42,7 @@ export const firebaseConfig = {
     AdminComponent,
     HomeComponent,
     ProfileComponent,
-    ErrorComponent
+    SellComponent
   ],
   imports: [
     BrowserModule,

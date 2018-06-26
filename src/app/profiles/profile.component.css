@@ -1,148 +1,161 @@
-h4 {
-    padding: 1%;
-    text-align: left;
-}
-
-.alert-danger {
-    width: 78%;
-    /* margin-left: 20%;
+ a {
+     padding: 1%;
+     text-align: left;
+     font-family: 'Kanit', sans-serif;
+ }
+ 
+ button {
+     font-family: 'Kanit', sans-serif;
+ }
+ 
+ .btn-outline-success#btn-account {
+     float: left;
+ }
+ 
+ @media (min-width: 768px) {
+     .btn-outline-success#btn-account {
+         float: right;
+         margin-right: 17%;
+     }
+ }
+ 
+ .alert-danger {
+     width: 78%;
+     /* margin-left: 20%;
     margin: auto;  */
-}
-
-td#delete {
-    text-align: center;
-}
-
-h4#main {
-    text-align: left;
-    font-size: 200%;
-}
-
-td {
-    text-align: left;
-}
-
-#submit {
-    padding: 10%;
-    text-align: left;
-}
-
-.form-control {
-    width: 50%;
-}
-
-h4#history {
-    text-align: left;
-    font-size: 150%;
-    margin-left: 5%;
-}
-
-table#tbhistory {
-    width: 90%;
-    margin-left: 5%;
-    font-size: 90%;
-}
-
-button {
-    border-radius: 0px;
-}
-
-table,
-td {
-    text-align: left;
-    width: 80%;
-    margin-left: 10%;
-}
-
-div.solid {
-    float: left;
-    display: block;
-    width: 93%;
-    border-radius: 0px;
-    border: 2px solid rgb(207, 207, 207);
-    padding: 20px;
-}
-
-p {
-    text-align: left;
-}
-
-p#json {
-    margin-left: 10%;
-}
-
-button#delect {
-    display: block;
-    float: right;
-    margin-right: 0%;
-    margin-top: -17%;
-}
-
-button {
-    border-radius: 0px;
-}
-
-button {
-    border-radius: 0px;
-}
-
-.btn-outline-success#done {
-    float: right;
-    margin-right: 170px;
-}
-
-button#address {
-    padding-right: 76px;
-    padding-left: 76px;
-    margin-left: 1%;
-}
-
-button#bank {
-    padding-right: 60px;
-    padding-left: 60px;
-    margin-left: 1%;
-}
-
-h4 {
-    padding: 1%;
-    text-align: left;
-}
-
-h4#main {
-    text-align: left;
-    font-size: 200%;
-}
-
-#submit {
-    padding: 10%;
-    text-align: left;
-}
-
-.form-control {
-    width: 50%;
-}
-
-#plus {
-    text-align: left;
-    margin-left: -15%;
-}
-
-h4#historys {
-    text-align: left;
-    font-size: 150%;
-    margin-left: 5%;
-}
-
-table#tbhistorys {
-    width: 80%;
-    margin: auto;
-    font-size: 90%;
-}
-
-.remove {
-    float: right;
-    display: block;
-}
-
-
-/* ------------------------------------------------------- */
+ }
+ 
+ td#delete {
+     text-align: center;
+ }
+ /* h4#main {
+     text-align: left;
+     font-size: 200%;
+ } */
+ 
+ td {
+     text-align: left;
+ }
+ 
+ #submit {
+     padding: 10%;
+     text-align: left;
+ }
+ 
+ .form-control {
+     width: 50%;
+ }
+ 
+ h4#history {
+     text-align: left;
+     font-size: 150%;
+     margin-left: 5%;
+ }
+ 
+ table#tbhistory {
+     width: 90%;
+     margin-left: 5%;
+     font-size: 90%;
+ }
+ 
+ button {
+     border-radius: 0px;
+ }
+ 
+ table,
+ td {
+     text-align: left;
+     width: 80%;
+     margin-left: 10%;
+ }
+ 
+ div.solid {
+     float: left;
+     display: block;
+     width: 93%;
+     border-radius: 0px;
+     border: 2px solid rgb(207, 207, 207);
+     padding: 20px;
+ }
+ 
+ p {
+     text-align: left;
+ }
+ 
+ p#json {
+     margin-left: 10%;
+ }
+ 
+ button#delect {
+     display: block;
+     float: right;
+     margin-right: 0%;
+     margin-top: -17%;
+ }
+ 
+ button {
+     border-radius: 0px;
+ }
+ 
+ button {
+     border-radius: 0px;
+ }
+ 
+ .btn-outline-success#done {
+     float: right;
+     margin-right: 170px;
+ }
+ 
+ button#address {
+     padding-right: 76px;
+     padding-left: 76px;
+     margin-left: 1%;
+ }
+ 
+ button#bank {
+     padding-right: 60px;
+     padding-left: 60px;
+     margin-left: 1%;
+ }
+ 
+ h4 {
+     padding: 1%;
+     text-align: left;
+ }
+ 
+ h4#main {
+     text-align: left;
+     font-size: 200%;
+ }
+ 
+ #submit {
+     padding: 10%;
+     text-align: left;
+ }
+ 
+ .form-control {
+     width: 50%;
+ }
+ 
+ #plus {
+     text-align: left;
+     margin-left: -15%;
+ }
+ 
+ h4#historys {
+     text-align: left;
+     font-size: 150%;
+     margin-left: 5%;
+ }
+ 
+ table#tbhistorys {
+     width: 80%;
+     margin: auto;
+     font-size: 90%;
+ }
+ 
+ .remove {
+     float: right;
+     display: block;
+ }
+ /* ------------------------------------------------------- */

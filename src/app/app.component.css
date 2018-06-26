@@ -2,6 +2,11 @@ body {
     padding-top: 15px;
     font-size: 12px;
     padding: 2em;
+    font-family: 'Kanit', sans-serif;
+}
+
+p {
+    font-family: 'Kanit', sans-serif;
 }
 
 
