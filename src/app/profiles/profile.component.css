@@ -134,7 +134,15 @@ h4#historys {
 }
 
 table#tbhistorys {
-    width: 90%;
-    margin-left: 5%;
+    width: 80%;
+    margin: auto;
     font-size: 90%;
 }
+
+.remove {
+    float: right;
+    display: block;
+}
+
+
+/* ------------------------------------------------------- */

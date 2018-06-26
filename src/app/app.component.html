@@ -1,6 +1,49 @@
-<nav class="navbar navbar-default">
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top navcarbox" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+                <a class="navbar-brand" style="margin-left: 10px; margin-top: 1px;" [routerLink]="['']">
+                    <img width="100px" class="img-responsive" src="assets/img/mebooks.png">
+                </a>
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <!--<li class="active"><a href="#">หน้าแรก</a></li>-->
+                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li *ngIf="!accessToken"><a href="#" data-toggle="modal" data-target="#myModal">ลงชื่อเข้าใช้</a></li>
+                    <li class="dropdown" *ngIf="accessToken">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">บัญชีผู้ใช้ <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" [routerLink]="['profile']"><i class="fa fa-smile-o"></i>&nbsp; สวัสดี {{displayName}}</a></li>
+                            <li><a href="#"><i class="fa fa-briefcase"></i>&nbsp; รายการฝากขาย</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#" (click)="this.auth.signOut()"><span class="glyphicon glyphicon-off"></span>&nbsp; ออกจากระบบ</a></li>
+                        </ul>
+                    </li>
+
+
+
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!--<nav class="navbar navbar-default">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
+      
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -8,12 +51,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-            <a class="navbar-brand" style="margin-left: 10px; margin-top: 1px;" [routerLink]="['/home']">
+            <a class="navbar-brand" style="margin-left: 10px; margin-top: 1px;" [routerLink]="['']">
                 <img width="100px" class="img-responsive" src="assets/img/mebooks.png">
             </a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
+        
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="#">ประเมินราคาหนังสือ <span class="sr-only">(current)</span></a></li>
@@ -34,12 +77,13 @@
             </ul>
         </div>
     </div>
-</nav>
+</nav>-->
+
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
-        <!-- Modal Singin-->
+        <!--Modal Singin-->
         <div id="loginbox" class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -51,11 +95,11 @@
                     <button class="loginBtn loginBtn--facebook" (click)="facebook()"> Login with Facebook </button>
                 </div>
 
-                <!-- <div class="login-or">
+                <div class="login-or">
                     <hr class="hr-or">
                     <span class="span-or">or</span>
                 </div>
-
+                <!--
                 <form role="form" [formGroup]="loginForm" (ngSubmit)="login()">
                     <div class="form-group">
                         <label for="inputUsernameEmail">Email</label>
@@ -82,7 +126,7 @@
             <br>
         </div>
 
-        <!-- Modal Signup
+        <!--Modal Signup
         <div class="modal-content" id="signupbox" style="display:none;">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>

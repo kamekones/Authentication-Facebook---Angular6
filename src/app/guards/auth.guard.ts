@@ -8,17 +8,26 @@ import 'rxjs/add/operator/take';
 @Injectable()
 export class AuthGuard implements CanActivate {
     constructor(private afAuth: AngularFireAuth, private router: Router) { }
-    canActivate(
-        next: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot): Observable<boolean> | boolean {
-        return this.afAuth.authState
-            .take(1)
-            .map(user => !!user)
-            .do(loggedIn => {
-                if (!loggedIn) {
-                    this.router.navigate(['home']);
-                }
-            })
-    }
+    // canActivate(
+    //     next: ActivatedRouteSnapshot,
+    //     state: RouterStateSnapshot): Observable<boolean> | boolean {
+    //     return this.afAuth.authState
+    //         .take(1)
+    //         .map(user => !!user)
+    //         .do(loggedIn => {
+    //             if (!loggedIn) {
+    //                 this.router.navigate(['']);
+    //             }
+    //         })
+    // }
+
+    canActivate() {
+        if (!localStorage.getItem("token")||!localStorage.getItem("uid")) {
+          this.router.navigate(['']);
+          return false;
+        }
+        return true;
+    
+      }
    
 }

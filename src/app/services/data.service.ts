@@ -10,13 +10,17 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
   users: Observable<any[]>;
+  address: Observable<any[]>;
   uid = localStorage.getItem('uid');
+
 
   constructor(private db2: AngularFireDatabase, private http: Http) {
 
@@ -38,5 +42,7 @@ export class DataService {
       .catch(error => console.log(error));
 
   }
+
+  
 
 }

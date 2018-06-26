@@ -78,7 +78,7 @@ export class AuthService {
           this.updateUserData();
         }
         this.getUser();
-        this.router.navigate(['home']);
+        // this.router.navigate(['']);
         location.reload();
 
       })
@@ -90,7 +90,7 @@ export class AuthService {
     return this.afAuth.auth.signInAnonymously()
       .then((user) => {
         this.authState = user
-        this.router.navigate(['home'])
+        // this.router.navigate([''])
       })
       .catch(error => console.log(error));
   }
@@ -99,9 +99,9 @@ export class AuthService {
       .then((user) => {
         this.authState = user
         console.log(this.authState)
-        // this.updateUserData()
-        // window.location.reload();
-        // this.router.navigate(['home']);
+        this.updateUserData()
+        window.location.reload();
+        // this.router.navigate(['']);
 
       })
       .catch(error => { return error });
@@ -124,7 +124,7 @@ export class AuthService {
   getCurrentLoggedIn() {
     this.afAuth.authState.subscribe(auth => {
       if (auth) {
-        this.router.navigate(['home'])
+        // this.router.navigate([''])
       }
     });
   }
@@ -132,7 +132,6 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('uid');
     this.afAuth.auth.signOut();
-    this.router.navigate(['home'])
     window.location.reload();
   }
   private updateUserData(): void {
@@ -163,7 +162,7 @@ export class AuthService {
       if(this.tel === undefined){
         this.updateUserData()
         window.location.reload();
-        this.router.navigate(['home']);
+        // this.router.navigate(['']);
       }
       
     });

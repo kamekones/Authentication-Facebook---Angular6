@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
-
+import { routing, appRoutingProviders } from './app.routing';
 
 
 import { environment } from '../environments/environment';
@@ -14,18 +14,17 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
-
-
 import { AppComponent } from './app.component';
+import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profiles/profile.component';
-
+import { ErrorComponent } from './errorPage/error.component';
 
 import { DataService } from './services/data.service';
 import { AuthService } from './providers/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 
-
+    
 export const firebaseConfig = {
   apiKey: "AIzaSyCvxxjDMjIG5RfYXHv0V1HjfhWVfaGqcjM",
   authDomain: "mebooks-5de3f.firebaseapp.com",
@@ -37,31 +36,25 @@ export const firebaseConfig = {
 
 
 
-const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  // { path: '**', redirectTo: 'home', pathMatch: 'full' }
-];
-
 @NgModule({
   declarations: [
     AppComponent,
+    AdminComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } 
-    ),
+    routing,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    
     
   ],
   providers: [DataService, AuthService, AuthGuard, AngularFireDatabase],

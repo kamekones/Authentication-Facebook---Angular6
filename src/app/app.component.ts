@@ -64,28 +64,23 @@ export class AppComponent implements OnInit {
 
   signup() {
     this.auth.emailSignUp(this.userForm.value.emailSignup, this.userForm.value.passwordSignup)
-    // .then(res => console.log(res));
   }
 
   login() {
     this.auth.emailLogin(this.loginForm.value.email, this.loginForm.value.password)
-    // .then(res => console.log(res));
   }
+
 
   facebook(){
     this.auth.facebookLogin();
   }
 
-  // google(){
-  //   this.auth.googleLogin();
-  // }
 
   getUser() {
     this.userList.snapshotChanges().map(actions => {
       return actions.map(action => ({ key: action.key, value: action.payload.val() }));
     }).subscribe(items => {
       this.displayName = items[1].value;
-      console.log(this.displayName)
       // this.getUser();
     });
   }
