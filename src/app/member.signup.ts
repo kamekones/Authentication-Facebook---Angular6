@@ -2,7 +2,7 @@ interface MemberSignupinterface{
     username: string,
     email: string,
     password: string,
-    confirm: string
+    confirmPassword: string
 }
 
 export class MemberSignup {
@@ -10,6 +10,6 @@ export class MemberSignup {
     username: string,
     email: string,
     password: string,
-    confirm: string
+    confirmPassword: string
 ){}
 }

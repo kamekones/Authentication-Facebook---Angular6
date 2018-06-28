@@ -36,7 +36,6 @@
 
     <nav class="navbar navbar-default">
         <div class="container-fluid">
-
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -91,9 +90,10 @@
             </div>
             <div class="modal-body">
                 <div style="text-align: center">
-                    <button class="btn btn-primary btn-lg btn3d" (click)="facebook()"> FACEBOOK </button>
+                    <!--<button class="btn btn-primary btn-lg btn3d" (click)="facebook()"> FACEBOOK </button>-->
+                    <a href="#" title="Facebook" class="btn btn-facebook btn-lg" (click)="facebook()" style="width:50%;"><i class="fa fa-facebook fa-fw"></i>  FACEBOOK</a>
                 </div>
-
+                <br>
                 <div class="login-or">
                     <hr class="hr-or">
                     <span class="span-or"><p>หรือ</p></span>
@@ -110,7 +110,7 @@
                         <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" required [(ngModel)]="memberLogin.password" #password="ngModel">
                     </div>
                     <p>ยังไม่มีบัญชีผู้ใช้ใช่ไหม? <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">ลงทะเบียนที่นี่</a></p>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" [disabled]="!memberLoginForm.form.valid">
                     เข้าสู่ระบบ
                   </button>
 
@@ -130,22 +130,41 @@
                 <h3>สมัครสมาชิก</h3>
                 <form (ngSubmit)="signup()" #memberSignupForm="ngForm">
                     <div class="form-group">
-                        <label for="inputUsernameEmail">ชื่อผู้ใช้</label>
-                        <input type="text" class="form-control" id="inputUsernameEmail" placeholder="Username" name="username" required [(ngModel)]="memberSignup.username" #username="ngModel">
+                        <label for="inputUsername">ชื่อผู้ใช้</label>
+                        <input type="text" class="form-control" id="inputUsername" placeholder="ชื่อผู้ใช้" name="username" required [(ngModel)]="memberSignup.username" #username="ngModel">
+                        <div [hidden]="username.valid || username.pristine" class="alert alert-danger">กรุณากรอกชื่อผู้ใช้</div>
                     </div>
                     <div class="form-group">
-                        <label for="inputUsernameEmail">อีเมล</label>
-                        <input type="text" class="form-control" id="inputUsernameEmail" placeholder="อีเมล" name="email" required [(ngModel)]="memberSignup.email" #email="ngModel">
+                        <label for="inputEmail">อีเมล</label>
+                        <input type="text" class="form-control" id="inputEmail" placeholder="อีเมล" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="email" required [(ngModel)]="memberSignup.email" #email="ngModel">
+                        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                            <div [hidden]="!email.hasError('required')">กรุณากรอกอีเมล</div>
+                            <div [hidden]="!email.hasError('pattern')">รูปแบบอีเมลควรเป็น
+                                <small>
+                                <b>joe@abc.com</b>
+                            </small>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="form-group">
-                        <label for="inputPassword">รหัสผ่าน</label>
-                        <input type="password" class="form-control" id="inputPassword" placeholder="อย่างน้อย 6 ตัว" name="password" required [(ngModel)]="memberSignup.password" #password="ngModel">
+                        <label for="password">รหัสผ่าน</label>
+                        <input type="password" class="form-control" id="password" placeholder="อย่างน้อย 6 ตัว" minlength="6" [(ngModel)]="memberSignup.password" name="password" #password="ngModel">
+                        <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+
+                            <div [hidden]="!password.hasError('minlength')">รหัสผ่านอย่างน้อย 6 ตัวอักษร</div>
+                        </div>
+                        <!-- <div [hidden]="!password.hasError('minlength')">Password ต้องมากกว่า 6 ตัวอักษร</div> -->
                     </div>
+
                     <div class="form-group">
                         <label for="inputConfirmPassword">ยืนยันรหัสผ่าน</label>
-                        <input type="password" class="form-control" id="inputConfirmPassword" placeholder="อย่างน้อย 6 ตัว" name="confirmpassword" required [(ngModel)]="memberSignup.confirmpassword" #confirmpassword="ngModel">
+                        <input type="password" class="form-control" id="inputConfirmPassword" placeholder="อย่างน้อย 6 ตัว" validateEqual="password" name="confirmPassword" required [(ngModel)]="memberSignup.confirmPassword" #confirmPassword="ngModel">
+                        <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="alert alert-danger">
+                            รหัสผ่านไม่ต้องกัน
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" [disabled]="!memberSignupForm.form.valid">
                     ลงทะเบียน
                   </button>
                 </form>

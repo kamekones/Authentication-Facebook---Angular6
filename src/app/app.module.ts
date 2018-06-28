@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -23,6 +23,7 @@ import { SellComponent } from './sell/sell.component';
 import { DataService } from './services/data.service';
 import { AuthService } from './providers/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { EqualValidator } from './password.match.directive';
 
     
 export const firebaseConfig = {
@@ -42,7 +43,8 @@ export const firebaseConfig = {
     AdminComponent,
     HomeComponent,
     ProfileComponent,
-    SellComponent
+    SellComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
+    
     
     
   ],

@@ -142,8 +142,7 @@ export class AuthService {
     });
   }
   signOut(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('uid');
+    localStorage.clear();
     this.afAuth.auth.signOut();
     window.location.reload();
   }

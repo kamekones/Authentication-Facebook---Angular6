@@ -52,7 +52,7 @@
                                     <div class="form-group">
                                         <label for="email" class="col-sm-3 control-label">อีเมล</label>
                                         <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="email" placeholder="อีเมล" required [(ngModel)]="model.email" name="email" #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" style="width:78%;">
+                                            <input type="email" class="form-control" id="email" placeholder="อีเมล" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required [(ngModel)]="model.email" name="email" #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" style="width:78%;">
                                             <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
                                                 <div [hidden]="!email.hasError('required')">กรุณากรอกอีเมล</div>
                                                 <div [hidden]="!email.hasError('pattern')">รูปแบบอีเมลควรเป็น
