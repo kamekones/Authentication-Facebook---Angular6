@@ -66,9 +66,9 @@
                     <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                     <li *ngIf="!accessToken"><a href="#" data-toggle="modal" data-target="#myModal">ลงชื่อเข้าใช้</a></li>
                     <li class="dropdown" *ngIf="accessToken">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">บัญชีผู้ใช้ <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">สวัสดี {{displayName}} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" [routerLink]="['profile']"><i class="fa fa-smile-o"></i>&nbsp; สวัสดี {{displayName}}</a></li>
+                            <li><a href="#" [routerLink]="['profile']"><i class="fa fa-smile-o"></i>&nbsp; จัดการบัญชีของฉัน</a></li>
                             <li><a href="#" [routerLink]="['sell']"><i class="fa fa-briefcase"></i>&nbsp; รายการขายของฉัน</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#" (click)="this.auth.signOut()"><span class="glyphicon glyphicon-off"></span>&nbsp; ออกจากระบบ</a></li>
@@ -99,15 +99,15 @@
                     <span class="span-or"><p>หรือ</p></span>
                 </div>
 
-                <form role="form">
+                <form (ngSubmit)="login()" #memberLoginForm="ngForm">
                     <div class="form-group">
                         <label for="inputUsernameEmail">อีเมล</label>
-                        <input type="text" class="form-control" id="inputUsernameEmail" placeholder="Email" name="email">
+                        <input type="text" class="form-control" id="inputUsernameEmail" placeholder="Email" name="email" required [(ngModel)]="memberLogin.email" #email="ngModel">
                     </div>
                     <div class="form-group">
                         <a class="pull-right" href="#">ลืมรหัสผ่าน</a>
                         <label for="inputPassword">รหัสผ่าน</label>
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" required [(ngModel)]="memberLogin.password" #password="ngModel">
                     </div>
                     <p>ยังไม่มีบัญชีผู้ใช้ใช่ไหม? <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">ลงทะเบียนที่นี่</a></p>
                     <button type="submit" class="btn btn-primary">
@@ -128,18 +128,22 @@
             </div>
             <div class="modal-body">
                 <h3>สมัครสมาชิก</h3>
-                <form role="form">
+                <form (ngSubmit)="signup()" #memberSignupForm="ngForm">
+                    <div class="form-group">
+                        <label for="inputUsernameEmail">ชื่อผู้ใช้</label>
+                        <input type="text" class="form-control" id="inputUsernameEmail" placeholder="Username" name="username" required [(ngModel)]="memberSignup.username" #username="ngModel">
+                    </div>
                     <div class="form-group">
                         <label for="inputUsernameEmail">อีเมล</label>
-                        <input type="text" class="form-control" id="inputUsernameEmail" placeholder="Email" name="email">
+                        <input type="text" class="form-control" id="inputUsernameEmail" placeholder="อีเมล" name="email" required [(ngModel)]="memberSignup.email" #email="ngModel">
                     </div>
                     <div class="form-group">
                         <label for="inputPassword">รหัสผ่าน</label>
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="อย่างน้อย 6 ตัว" name="password" required [(ngModel)]="memberSignup.password" #password="ngModel">
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword">ยืนยันรหัสผ่าน</label>
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Confirm Password" name="password">
+                        <label for="inputConfirmPassword">ยืนยันรหัสผ่าน</label>
+                        <input type="password" class="form-control" id="inputConfirmPassword" placeholder="อย่างน้อย 6 ตัว" name="confirmpassword" required [(ngModel)]="memberSignup.confirmpassword" #confirmpassword="ngModel">
                     </div>
                     <button type="submit" class="btn btn-primary">
                     ลงทะเบียน

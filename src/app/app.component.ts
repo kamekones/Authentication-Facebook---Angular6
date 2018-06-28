@@ -10,16 +10,21 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
 
+import { MemberSignup } from './member.signup';
+import { MemberLogin } from './member.login';
+
+import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  userForm: FormGroup;
-  loginForm: FormGroup;
-  emailSignup: string;
-  nameSignup: string;
+
+  memberSignup = new MemberSignup("", "", "", "");
+  memberLogin = new MemberLogin("", "");
+  submitted = false;
   accessToken = localStorage.getItem('token');
   uid = localStorage.getItem('uid');
   userList: AngularFireList<any>;
@@ -30,48 +35,38 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.buildForm();
     this.getUser();
   }
 
-  buildForm(): void {
-    this.userForm = new FormGroup({
-      emailSignup: new FormControl('', [
-        Validators.required,
-        Validators.email
-      ]),
-      passwordSignup: new FormControl('', [
-        Validators.pattern('^(?=.*[0–9])(?=.*[a-zA-Z])([a-zA-Z0–9]+)$'),
-        Validators.minLength(6),
-        Validators.maxLength(25)
-      ])
 
-    });
-
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [
-        Validators.required,
-        Validators.email
-      ]),
-      password: new FormControl('', [
-        Validators.pattern('^(?=.*[0–9])(?=.*[a-zA-Z])([a-zA-Z0–9]+)$'),
-        Validators.minLength(6),
-        Validators.maxLength(25)
-      ])
-    });
-
-  }
 
   signup() {
-    this.auth.emailSignUp(this.userForm.value.emailSignup, this.userForm.value.passwordSignup)
+    this.submitted = true;
+    localStorage.setItem('username', this.memberSignup['username'])
+    this.auth.emailSignUp(this.memberSignup['email'], this.memberSignup['password'])
+      .then((res) => {
+        console.log(res)
+        if (res && res.code == 'auth/email-already-in-use') {
+          swal({
+            type: 'error',
+            title: 'Oops!!',
+            text: 'อีเมลนี้มีคนใช้แล้ว!',
+          })
+        }
+      })
+
   }
 
   login() {
-    this.auth.emailLogin(this.loginForm.value.email, this.loginForm.value.password)
+    this.submitted = true;
+    this.auth.emailLogin(this.memberLogin['email'], this.memberLogin['password'])
+    .then(res => {
+      console.log(res)
+    })
   }
 
 
-  facebook(){
+  facebook() {
     this.auth.facebookLogin();
   }
 
@@ -81,7 +76,8 @@ export class AppComponent implements OnInit {
       return actions.map(action => ({ key: action.key, value: action.payload.val() }));
     }).subscribe(items => {
       this.displayName = items[1].value;
-      // this.getUser();
+
+
     });
   }
 

@@ -12,8 +12,10 @@ import { AngularFirestore } from 'angularfire2/firestore';
 export class AuthService {
   authState: any = null;
   dataUser: any = null;
+  memberUser: any = null;
   checkLogin: any = [];
   userRef: AngularFireObject<any>;
+  userEmail: AngularFireObject<any>;
   tel: any;
   userList: AngularFireList<any>;
   uid = localStorage.getItem('uid');
@@ -71,14 +73,13 @@ export class AuthService {
         localStorage.setItem('token', res.credential.accessToken);
         localStorage.setItem('uid', res.user.uid);
         this.authState = res.user
-        this.dataUser = res.additionalUserInfo
-        console.log(this.dataUser)
-        
+        this.dataUser = res.additionalUserInfo         
         if(this.dataUser.isNewUser == true){
+          this.dataUser.profile['tel'] = "";
+          console.log(this.dataUser)
           this.updateUserData();
         }
         this.getUser();
-        // this.router.navigate(['']);
         location.reload();
 
       })
@@ -95,13 +96,21 @@ export class AuthService {
       .catch(error => console.log(error));
   }
   emailSignUp(email: string, password: string) {
+    // console.log(email);
+    // console.log(localStorage.getItem('username'))
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.authState = user
-        console.log(this.authState)
-        this.updateUserData()
+        localStorage.setItem('token', this.authState.refreshToken);
+        localStorage.setItem('uid', this.authState.uid);
+        this.authState['username'] = localStorage.getItem('username');
+        this.authState['name'] = "";
+        this.authState['lname'] = "";
+        this.authState['tel'] = "";
+        // console.log(this.authState) 
+        this.addUserEmail()
         window.location.reload();
-        // this.router.navigate(['']);
+        this.router.navigate(['']);
 
       })
       .catch(error => { return error });
@@ -109,8 +118,12 @@ export class AuthService {
   emailLogin(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
-        this.authState = user
-        console.log(this.authState)
+        this.authState = user;
+        localStorage.setItem('token', this.authState.refreshToken);
+        localStorage.setItem('uid', this.authState.uid);
+        console.log(this.authState);
+        window.location.reload();
+        this.router.navigate(['']);
         
       })
       .catch(error => { return error });
@@ -142,6 +155,7 @@ export class AuthService {
       name: this.dataUser.profile.name,
       fname: this.dataUser.profile.first_name,
       lname: this.dataUser.profile.last_name,
+      tel: this.dataUser.profile.tel
 
 
 
@@ -150,19 +164,39 @@ export class AuthService {
       .catch(error => console.log(error));
   }
 
-  addUserData() {
-    this.afs.collection('users').add({ 'email': this.authState.email });
+  private addUserEmail(): void {
+    const path = `users/${this.currentUserId}`; // Endpoint on firebase
+    const userEmail: AngularFireObject<any> = this.db.object(path);
+    const data = {
+      email: this.authState.email,
+      name: this.authState.name,
+      fname: this.authState.username,
+      lname: this.authState.lname,
+      tel: this.authState.tel
+    }
+    userEmail.update(data)
+      .catch(error => console.log(error));
   }
+
+  private LoginUser(): void {
+    const path = `users/${this.currentUserId}`; // Endpoint on firebase
+    const userEmail: AngularFireObject<any> = this.db.object(path);
+    const data = {
+      email: this.authState.email,
+    }
+    userEmail.update(data)
+      .catch(error => console.log(error));
+  }
+
 
   getUser() {
     this.userList.snapshotChanges().map(actions => {
       return actions.map(action => ({ key: action.key, value: action.payload.val() }));
     }).subscribe(items => {
       this.tel = items[4].value;
-      if(this.tel === undefined){
+      if(this.tel == undefined){
         this.updateUserData()
         window.location.reload();
-        // this.router.navigate(['']);
       }
       
     });
