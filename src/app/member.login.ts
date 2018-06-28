@@ -3,9 +3,11 @@ interface MemberLogininterface {
     password: string,
 }
 
-export class MemberLogin {
+export class MemberLogin implements MemberLogininterface {
+    email: string;
+    password: string;
     constructor(
-    email: string,
-    password: string,
-){}
+        email: string,
+        password: string,
+    ) { }
 }

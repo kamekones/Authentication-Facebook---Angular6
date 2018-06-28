@@ -1,15 +1,19 @@
-interface MemberSignupinterface{
+interface MemberSignupinterface {
     username: string,
     email: string,
     password: string,
     confirmPassword: string
 }
 
-export class MemberSignup {
+export class MemberSignup implements MemberSignupinterface {
+    username: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
     constructor(
-    username: string,
-    email: string,
-    password: string,
-    confirmPassword: string
-){}
+        username: string,
+        email: string,
+        password: string,
+        confirmPassword: string
+    ) { }
 }
