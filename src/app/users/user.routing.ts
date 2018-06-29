@@ -19,11 +19,13 @@ const appRoutes: Routes = [
         children: [
             { path: '', component: HomeComponent },
             { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-            { path: 'cart', component: CartComponent }
+            { path: 'cart', component: CartComponent },
+
+
         ]
     },
     { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
-    { path: '**', redirectTo: '', pathMatch: 'full' },
+    // { path: '/*', redirectTo: '', pathMatch: 'full' },
 
 ];
 

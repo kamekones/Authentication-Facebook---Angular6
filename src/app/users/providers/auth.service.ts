@@ -7,7 +7,7 @@ import { AngularFireDatabaseModule, FirebaseListObservable, FirebaseObjectObserv
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { AngularFirestore } from 'angularfire2/firestore';
-
+import swal from 'sweetalert2';
 @Injectable()
 export class AuthService {
   authState: any = null;
@@ -73,8 +73,8 @@ export class AuthService {
         localStorage.setItem('token', res.credential.accessToken);
         localStorage.setItem('uid', res.user.uid);
         this.authState = res.user
-        this.dataUser = res.additionalUserInfo         
-        if(this.dataUser.isNewUser == true){
+        this.dataUser = res.additionalUserInfo
+        if (this.dataUser.isNewUser == true) {
           this.dataUser.profile['tel'] = "";
           console.log(this.dataUser)
           this.updateUserData();
@@ -121,7 +121,7 @@ export class AuthService {
         console.log(this.authState);
         window.location.reload();
         this.router.navigate(['']);
-        
+
       })
       .catch(error => { return error });
   }
@@ -141,6 +141,13 @@ export class AuthService {
   signOut(): void {
     localStorage.clear();
     this.afAuth.auth.signOut();
+    swal({
+      position: 'center',
+      type: 'success',
+      title: 'ออกจากระบบ',
+      showConfirmButton: false,
+      timer: 1500
+    })
     window.location.reload();
   }
   private updateUserData(): void {
@@ -192,15 +199,15 @@ export class AuthService {
       return actions.map(action => ({ key: action.key, value: action.payload.val() }));
     }).subscribe(items => {
       this.tel = items[4].value;
-      if(this.tel == undefined){
+      if (this.tel == undefined) {
         this.updateUserData()
         window.location.reload();
       }
-      
+
     });
   }
 
-  
+
 
 
 

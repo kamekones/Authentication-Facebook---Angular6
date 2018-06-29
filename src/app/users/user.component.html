@@ -67,10 +67,10 @@
                                                 </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#" [routerLink]="['/profile']"><i class="fa fa-user"></i>&nbsp; คุณ{{displayName}}</a>
+                            <a href="#" [routerLink]="['/profile']"><i class="fa fa-user"></i>&nbsp; บัญชีคุณ{{displayName}}</a>
                         </li>
                         <li *ngIf="isAdmin==true">
-                            <a href="#" [routerLink]="['/admin']"><i class="fa fa-user"></i>&nbsp; admin</a>
+                            <a href="#" [routerLink]="['admin/dashboard']" target="_blank"><i class="fa fa-gears"></i>&nbsp; Admin</a>
                         </li>
                         <li>
                             <a href="#" (click)="this.auth.signOut()"><span class="glyphicon glyphicon-off"></span>&nbsp; ออกจากระบบ</a>

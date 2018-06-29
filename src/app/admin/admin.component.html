@@ -8,9 +8,9 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-            <a class="navbar-brand" href="#">
-				Brand
-			</a>
+            <a class="navbar-brand" style="margin-left: 10px; margin-top: 1px;" href="#" [routerLink]="['/admin/dashboard']">
+                <img width="100px" class="img-responsive" src="assets/img/mebooks.png">
+            </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -22,18 +22,15 @@
                 <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://www.pingpong-labs.com" target="_blank">Visit Site</a></li>
+                <li><a href="#" [routerLink]="['']" target="_blank">Visit Web</a></li>
                 <li class="dropdown ">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 						Account
 						<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">SETTINGS</li>
-                        <li class=""><a href="#">Other Link</a></li>
-                        <li class=""><a href="#">Other Link</a></li>
-                        <li class=""><a href="#">Other Link</a></li>
+                        <li><a href="#" [routerLink]="['/admin/account']"><i class="fa fa-user"></i> {{displayName}}</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Logout</a></li>
+                        <li><a href="#" (click)="this.auth.signOut()"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -44,23 +41,26 @@
 </nav>
 <div class="container-fluid main-container">
     <div class="col-md-2 sidebar">
-        <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+        <ul class="nav nav-pills nav-stacked admin-menu">
+            <li><a href="#" [routerLink]="['/admin/dashboard']"><i class="fa fa-home fa-fw"></i>Dashboard</a></li>
+            <li><a href="#" [routerLink]="['/admin/module']"><i class="fa fa-list-alt fa-fw"></i>Module</a></li>
+            <li><a href="#" [routerLink]="['/admin/member']"><i class="fa fa-bar-chart-o fa-fw"></i>Member</a></li>
+            <li><a href="#" [routerLink]="['/admin/banner']"><i class="fa fa-table fa-fw"></i>Banner</a></li>
+            <li><a href="#" [routerLink]="['/admin/book']"><i class="fa fa-tasks fa-fw"></i>Books</a></li>
+            <li><a href="#" [routerLink]="['/admin/sell']"><i class="fa fa-calendar fa-fw"></i>Sell</a></li>
+            <li>
+                <a data-toggle="collapse" data-target="#buy" class="collapsed active"><i class="fa fa-book fa-fw"></i>Buy <span class="caret"></span></a>
+                <ul class="nav admin-menu collapse" id="buy">
+                    <li><a href="#" [routerLink]="['/admin/buy']">Payment</a></li>
+                    <li><a href="#" [routerLink]="['/admin/transport']">Transportation</a></li>
+                </ul>
+            </li>
+            <li><a href="#" data-target-id="applications" [routerLink]="['/admin/Inbox']"><i class="fa fa-pencil fa-fw"></i>Inbox</a></li>
+            <li><a href="#" data-target-id="settings" [routerLink]="['/admin/setting']"><i class="fa fa-cogs fa-fw"></i>Settings</a></li>
         </ul>
     </div>
+
     <div class="col-md-10 content">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Dashboard
-            </div>
-            <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-        </div>
+        <router-outlet></router-outlet>
     </div>
 </div>

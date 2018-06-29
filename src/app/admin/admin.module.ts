@@ -15,7 +15,17 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { AdminComponent } from './admin.component';
+import { AccountComponent } from './account/account.component';
+import { BannerComponent } from './banner/banner.component';
+import { BookComponent } from './book/book.component';
+import { BuyComponent } from './buy/buy.component';
+import { InboxComponent } from './inbox/inbox.component';
+import { DashboardComponent } from './dashboards/dashboard.component';
 import { MemberComponent } from './members/member.component';
+import { ModuleComponent } from './module/module.component';
+import { SellComponent } from './sell/sell.component';
+import { SettingComponent } from './setting/setting.component';
+import { TransportComponent } from './transport/transport.component';
 
     
 export const firebaseConfig = {
@@ -32,8 +42,17 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AdminComponent,
-    MemberComponent
-
+    AccountComponent,
+    MemberComponent,
+    DashboardComponent,
+    BannerComponent,
+    BookComponent,
+    BuyComponent,
+    InboxComponent,
+    ModuleComponent,
+    SellComponent,
+    SettingComponent,
+    TransportComponent
   ],
   imports: [
     BrowserModule,
