@@ -6,14 +6,14 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profiles/profile.component';
-import { SellComponent } from './sell/sell.component';
+import { CartComponent } from './cart/cart.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-    { path: 'sell', component: SellComponent, canActivate: [AuthGuard] },
+    { path: 'shoppingcart', component: CartComponent, canActivate: [AuthGuard] },
     { path: '**', component: HomeComponent }
   ];
 

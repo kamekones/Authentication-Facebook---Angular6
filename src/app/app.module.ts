@@ -18,7 +18,9 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profiles/profile.component';
-import { SellComponent } from './sell/sell.component';
+import { BannerComponent } from './banner/banner.component';
+import { CartComponent } from './cart/cart.component';
+
 
 import { DataService } from './services/data.service';
 import { AuthService } from './providers/auth.service';
@@ -43,7 +45,8 @@ export const firebaseConfig = {
     AdminComponent,
     HomeComponent,
     ProfileComponent,
-    SellComponent,
+    BannerComponent,
+    CartComponent,
     EqualValidator
   ],
   imports: [
@@ -56,6 +59,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
+    
     
     
     

@@ -1,15 +1,22 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>จัดการข้อมูลผู้ใช้ | MEBOOKs</title>
+<title>
+    บัญชีผู้ใช้ | MEBOOKs</title>
 <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/${JSCORE_VERSION}/firebase.js"></script>
 
 
+<br>
 <div class="container">
-    <h1 class="panel-title" id="main">
-        <a [routerLink]="['']">หน้าแรก</a>><a>บัญชีผู้ใช้</a>
-    </h1>
-    <br>
+    <div class="col">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['']">Home</a></li>
+                <!-- <li class="item"><a href="category.html">หน้าแรก</a></li> -->
+                <li class="breadcrumb-item active" aria-current="page">ข้อมูลส่วนตัว</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="panel-group" id="accordion">

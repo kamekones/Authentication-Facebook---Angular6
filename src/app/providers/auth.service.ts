@@ -96,8 +96,6 @@ export class AuthService {
       .catch(error => console.log(error));
   }
   emailSignUp(email: string, password: string) {
-    // console.log(email);
-    // console.log(localStorage.getItem('username'))
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.authState = user
@@ -107,7 +105,6 @@ export class AuthService {
         this.authState['name'] = "";
         this.authState['lname'] = "";
         this.authState['tel'] = "";
-        // console.log(this.authState) 
         this.addUserEmail()
         window.location.reload();
         this.router.navigate(['']);

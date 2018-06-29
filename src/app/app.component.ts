@@ -25,7 +25,6 @@ import {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
   memberSignup = new MemberSignup("", "", "", "");
   memberLogin = new MemberLogin("", "");
   submitted = false;
@@ -77,7 +76,7 @@ export class AppComponent implements OnInit {
     this.auth.emailLogin(this.memberLogin['email'], this.memberLogin['password'])
       .then(res => {
         console.log(res)
-        if (res && res.code == 'auth/user-not-found') {
+        if (res && res.code == 'auth/user-not-found' || res.code == "auth/invalid-email") {
           swal({
             type: 'error',
             title: 'Oops!!',
@@ -95,7 +94,7 @@ export class AppComponent implements OnInit {
             type: 'success',
             title: 'เข้าสู่ระบบสำเร็จ',
             showConfirmButton: false,
-            timer: 1500
+            timer: 2000
           })
         }
       })
@@ -121,11 +120,29 @@ export class AppComponent implements OnInit {
     this.userList.snapshotChanges().map(actions => {
       return actions.map(action => ({ key: action.key, value: action.payload.val() }));
     }).subscribe(items => {
-      this.displayName = items[1].value;
-
-
+      // this.displayName = items[1].value;
+      localStorage.setItem('displayName', items[1].value);
+      this.displayName = localStorage.getItem('displayName')
     });
   }
+
+
+  async resetPassword() {
+    const {value: email} = await swal({
+      title: 'โปรดใส่ Email ของคุณ',
+      input: 'email',
+      inputPlaceholder: 'Enter your email address'
+    })
+    
+    if (email) {
+      swal('ตรวจสอบ Email ของคุณ')
+      this.auth.resetPassword(email).then(res => {
+        console.log(res);
+      })
+    }
+  }
+
+
 
 
 
