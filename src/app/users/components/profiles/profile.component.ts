@@ -12,7 +12,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import * as firebase from 'firebase/app';
 
-import { DataService } from '../services/data.service';
+import { DataService } from '../../services/data.service';
 import { User } from './user';
 import { Address } from './address';
 import { Banks } from './bank';

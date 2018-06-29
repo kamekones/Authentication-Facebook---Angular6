@@ -1,0 +1,113 @@
+body {
+    padding-top: 15px;
+    font-size: 12px;
+    padding: 2em;
+    font-family: 'Kanit', sans-serif;
+}
+
+.btn {
+    border-radius: 0px;
+    font-family: 'Kanit', sans-serif;
+}
+
+input {
+    border-radius: 0px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.alert-danger {
+    border-radius: 0px;
+    font-family: 'Kanit', sans-serif;
+}
+
+p {
+    font-family: 'Kanit', sans-serif;
+}
+
+h3 {
+    font-family: 'Kanit', sans-serif;
+}
+
+html {
+    margin: 40px auto;
+    text-align: center;
+}
+
+.img-modal {
+    width: 20%;
+    margin-top: -6%;
+    margin: -10%;
+    margin-left: 0%;
+}
+
+
+/* --------------------facebook---------------------------- */
+
+.btn-facebook {
+    background: #3B5998;
+    border-radius: 0;
+    color: #fff;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #263961;
+}
+
+.btn-facebook:link,
+.btn-facebook:visited {
+    color: #fff;
+}
+
+.btn-facebook:active,
+.btn-facebook:hover {
+    background: #263961;
+    color: #fff;
+}
+
+.active-cyan-4 input[type=text]:focus:not([readonly]) {
+    border: 1px solid #4dd0e1;
+    box-shadow: 0 0 0 1px #4dd0e1;
+}
+
+.login-or {
+    position: relative;
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+}
+
+.hr-or {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+
+/* ------------------- cart ---------------------- */
+
+.badge {
+    background-color: #E75959;
+    border-radius: 10px;
+    color: white;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    padding: 3px 7px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}

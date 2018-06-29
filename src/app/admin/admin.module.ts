@@ -4,20 +4,18 @@ import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
-import { routing, appRoutingProviders } from './app.routing';
+import { adminRouting, appRoutingProviders } from './admin.routing';
 
 
-import { environment } from '../environments/environment';
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
-import { AppComponent } from './app.component';
-import { AdminModule } from './admin/admin.Module'
-import { UserModule } from './users/user.module';
-
+import { AdminComponent } from './admin.component';
+import { MemberComponent } from './members/member.component';
 
     
 export const firebaseConfig = {
@@ -33,17 +31,16 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    
+    AdminComponent,
+    MemberComponent
+
   ],
   imports: [
-    UserModule,
-    AdminModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    routing,
+    adminRouting,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -54,8 +51,8 @@ export const firebaseConfig = {
     
   ],
   providers: [
-    AngularFireDatabase,
+    AngularFireDatabase
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AdminComponent]
 })
-export class AppModule { }
+export class AdminModule { }

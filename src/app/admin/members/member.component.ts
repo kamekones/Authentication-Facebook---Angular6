@@ -9,27 +9,22 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
 
-
-import swal from 'sweetalert2';
-import {
-  NG_VALIDATORS, Validator,
-  AbstractControl, ValidatorFn
-} from '@angular/forms';
-
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'member',
+  templateUrl: './member.component.html',
+  styleUrls: ['./member.component.css']
 })
-export class AppComponent implements OnInit {
+export class MemberComponent implements OnInit {
 
   constructor() {
 
   }
 
   ngOnInit() {
-    
+
   }
+
+
 
 
 

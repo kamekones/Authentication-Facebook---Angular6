@@ -4,20 +4,28 @@ import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
-import { routing, appRoutingProviders } from './app.routing';
+import { userRouting, appRoutingProviders } from './user.routing';
 
 
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
-import { AppComponent } from './app.component';
-import { AdminModule } from './admin/admin.Module'
-import { UserModule } from './users/user.module';
+import { UserComponent } from './user.component';
+import { HomeComponent } from './components/home/home.component';
+import { ProfileComponent } from './components/profiles/profile.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { CartComponent } from './components/cart/cart.component';
 
+
+import { DataService } from './services/data.service';
+import { AuthService } from './providers/auth.service';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { EqualValidator } from './password.match.directive';
 
     
 export const firebaseConfig = {
@@ -33,17 +41,19 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    
+    UserComponent,
+    HomeComponent,
+    ProfileComponent,
+    BannerComponent,
+    CartComponent,
+    EqualValidator
   ],
   imports: [
-    UserModule,
-    AdminModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    routing,
+    userRouting,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -54,8 +64,12 @@ export const firebaseConfig = {
     
   ],
   providers: [
+    DataService,
+    AuthService, 
+    AuthGuard, 
     AngularFireDatabase,
+    AdminGuard
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [UserComponent]
 })
-export class AppModule { }
+export class UserModule { }
