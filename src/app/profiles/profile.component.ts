@@ -52,9 +52,9 @@ export class ProfileComponent implements OnInit {
 
 
   constructor(private db2: AngularFireDatabase, private dService: DataService) {
-    this.userList = db2.list('users/' + this.uid);
-    this.addressList = db2.list(`address/${this.uid}/`);
-    this.banksList = db2.list(`banks/${this.uid}/`);
+    this.userList = db2.list('users/' + this.uid + '/account');
+    this.addressList = db2.list(`users/${this.uid}/address`);
+    this.banksList = db2.list(`users/${this.uid}/banks`);
   }
 
 
@@ -88,9 +88,9 @@ export class ProfileComponent implements OnInit {
     }).subscribe(items => {
       this.model["email"] = items[0].value;
       this.model["fname"] = items[1].value;
-      this.model["lname"] = items[2].value;
-      if (items[4].value) {
-        this.model["tel"] = items[4].value;
+      this.model["lname"] = items[3].value;
+      if (items[5].value) {
+        this.model["tel"] = items[5].value;
       } else {
         this.model["tel"] = "";
       }
@@ -107,7 +107,7 @@ export class ProfileComponent implements OnInit {
         text: 'โปรดกรอกข้อมูลให้ครบถ้วน!',
       })
     } else {
-      this.db2.list(`address/${this.uid}/`).push(this.address);
+      this.db2.list(`users/${this.uid}/address`).push(this.address);
       swal({
         position: 'center',
         type: 'success',
@@ -136,7 +136,7 @@ export class ProfileComponent implements OnInit {
 
 
   removeAddress(id) {
-    this.db2.list(`address/${this.uid}/`).remove(id).then(() => {
+    this.db2.list(`users/${this.uid}/address`).remove(id).then(() => {
       swal({
         position: 'center',
         type: 'success',
@@ -157,7 +157,7 @@ export class ProfileComponent implements OnInit {
         text: 'โปรดกรอกข้อมูลให้ครบถ้วน!',
       })
     } else {
-      this.db2.list(`banks/${this.uid}/`).push(this.banks);
+      this.db2.list(`users/${this.uid}/banks`).push(this.banks);
       swal({
         position: 'center',
         type: 'success',
@@ -183,7 +183,7 @@ export class ProfileComponent implements OnInit {
   }
 
   removeBank(id){
-    this.db2.list(`banks/${this.uid}/`).remove(id).then(() => {
+    this.db2.list(`users/${this.uid}/banks`).remove(id).then(() => {
       swal({
         position: 'center',
         type: 'success',

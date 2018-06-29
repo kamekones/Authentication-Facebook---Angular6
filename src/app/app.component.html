@@ -69,6 +69,9 @@
                         <li>
                             <a href="#" [routerLink]="['profile']"><i class="fa fa-user"></i>&nbsp; คุณ{{displayName}}</a>
                         </li>
+                        <li *ngIf="isAdmin==true">
+                            <a href="#" [routerLink]="['admin']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><i class="fa fa-user"></i>&nbsp; admin</a>
+                        </li>
                         <li>
                             <a href="#" (click)="this.auth.signOut()"><span class="glyphicon glyphicon-off"></span>&nbsp; ออกจากระบบ</a>
                         </li>

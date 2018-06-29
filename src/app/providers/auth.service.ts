@@ -26,7 +26,7 @@ export class AuthService {
     private router: Router,
     private afs: AngularFirestore
   ) {
-    this.userList = db.list('users/' + this.uid);
+    this.userList = db.list('users/' + this.uid + '/account');
     this.user = afAuth.authState;
     this.afAuth.authState.subscribe((auth) => {
       this.authState = auth
@@ -144,11 +144,12 @@ export class AuthService {
     window.location.reload();
   }
   private updateUserData(): void {
-    const path = `users/${this.currentUserId}`; // Endpoint on firebase
+    const path = `users/${this.currentUserId}/account`; // Endpoint on firebase
     const userRef: AngularFireObject<any> = this.db.object(path);
     const data = {
       email: this.dataUser.profile.email,
       name: this.dataUser.profile.name,
+      isAdmin: false,
       fname: this.dataUser.profile.first_name,
       lname: this.dataUser.profile.last_name,
       tel: this.dataUser.profile.tel
@@ -161,11 +162,12 @@ export class AuthService {
   }
 
   private addUserEmail(): void {
-    const path = `users/${this.currentUserId}`; // Endpoint on firebase
+    const path = `users/${this.currentUserId}/account`; // Endpoint on firebase
     const userEmail: AngularFireObject<any> = this.db.object(path);
     const data = {
       email: this.authState.email,
       name: this.authState.name,
+      isAdmin: false,
       fname: this.authState.username,
       lname: this.authState.lname,
       tel: this.authState.tel
@@ -175,7 +177,7 @@ export class AuthService {
   }
 
   private LoginUser(): void {
-    const path = `users/${this.currentUserId}`; // Endpoint on firebase
+    const path = `users/${this.currentUserId}/account`; // Endpoint on firebase
     const userEmail: AngularFireObject<any> = this.db.object(path);
     const data = {
       email: this.authState.email,

@@ -25,6 +25,7 @@ import { CartComponent } from './cart/cart.component';
 import { DataService } from './services/data.service';
 import { AuthService } from './providers/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
 import { EqualValidator } from './password.match.directive';
 
     
@@ -64,7 +65,13 @@ export const firebaseConfig = {
     
     
   ],
-  providers: [DataService, AuthService, AuthGuard, AngularFireDatabase],
+  providers: [
+    DataService,
+    AuthService, 
+    AuthGuard, 
+    AngularFireDatabase,
+    AdminGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

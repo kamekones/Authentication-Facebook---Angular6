@@ -29,7 +29,7 @@ export class DataService {
 
 
   addUsers(value) {
-    const path = '/users/' + this.uid; // Endpoint on firebase
+    const path = '/users/' + this.uid + '/account'; // Endpoint on firebase
     const userRef: AngularFireObject<any> = this.db2.object(path);
     const data = {
       name: value.fname + " " + value.lname,

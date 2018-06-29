@@ -28,13 +28,14 @@ export class AppComponent implements OnInit {
   memberSignup = new MemberSignup("", "", "", "");
   memberLogin = new MemberLogin("", "");
   submitted = false;
+  isAdmin: any;
   accessToken = localStorage.getItem('token');
   uid = localStorage.getItem('uid');
   userList: AngularFireList<any>;
   displayName: any;
   constructor(private router: Router, private fb: FormBuilder, private auth: AuthService, private db2: AngularFireDatabase) {
     auth.getCurrentLoggedIn();
-    this.userList = db2.list('users/' + this.uid);
+    this.userList = db2.list('users/' + this.uid + '/account');
   }
 
   ngOnInit() {
@@ -120,7 +121,7 @@ export class AppComponent implements OnInit {
     this.userList.snapshotChanges().map(actions => {
       return actions.map(action => ({ key: action.key, value: action.payload.val() }));
     }).subscribe(items => {
-      // this.displayName = items[1].value;
+      this.isAdmin = items[2].value;
       localStorage.setItem('displayName', items[1].value);
       this.displayName = localStorage.getItem('displayName')
     });
