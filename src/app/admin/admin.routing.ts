@@ -4,17 +4,17 @@ import { CanActivate } from '@angular/router';
 
 
 import { AdminComponent } from './admin.component';
-import { AccountComponent } from './account/account.component';
-import { BannerComponent } from './banner/banner.component';
-import { BookComponent } from './book/book.component';
-import { BuyComponent } from './buy/buy.component';
-import { InboxComponent } from './inbox/inbox.component';
-import { DashboardComponent } from './dashboards/dashboard.component';
-import { MemberComponent } from './members/member.component';
-import { ModuleComponent } from './module/module.component';
-import { SellComponent } from './sell/sell.component';
-import { SettingComponent } from './setting/setting.component';
-import { TransportComponent } from './transport/transport.component';
+import { AccountComponent } from './components/account/account.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { BookComponent } from './components/book/book.component';
+import { BuyComponent } from './components/buy/buy.component';
+import { InboxComponent } from './components/inbox/inbox.component';
+import { DashboardComponent } from './components/dashboards/dashboard.component';
+import { MemberComponent } from './components/members/member.component';
+import { ModuleComponent } from './components/module/module.component';
+import { SellComponent } from './components/sell/sell.component';
+import { SettingComponent } from './components/setting/setting.component';
+import { TransportComponent } from './components/transport/transport.component';
 
 import { AdminGuard } from '../users/guards/admin.guard';
 

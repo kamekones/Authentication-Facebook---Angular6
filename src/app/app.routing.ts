@@ -10,6 +10,7 @@ import { AdminComponent } from './admin/admin.component'
 const appRoutes: Routes = [
   { path: '', redirectTo: '/user', pathMatch: 'full' },
 
+
 ];
 
 

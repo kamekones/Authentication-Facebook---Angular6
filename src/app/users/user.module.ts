@@ -28,14 +28,14 @@ import { AdminGuard } from './guards/admin.guard';
 import { EqualValidator } from './password.match.directive';
 
     
-export const firebaseConfig = {
-  apiKey: "AIzaSyCvxxjDMjIG5RfYXHv0V1HjfhWVfaGqcjM",
-  authDomain: "mebooks-5de3f.firebaseapp.com",
-  databaseURL: "https://mebooks-5de3f.firebaseio.com",
-  projectId: "mebooks-5de3f",
-  storageBucket: "mebooks-5de3f.appspot.com",
-  messagingSenderId: "411345558211"
-};
+// export const firebaseConfig = {
+//   apiKey: "AIzaSyCvxxjDMjIG5RfYXHv0V1HjfhWVfaGqcjM",
+//   authDomain: "mebooks-5de3f.firebaseapp.com",
+//   databaseURL: "https://mebooks-5de3f.firebaseio.com",
+//   projectId: "mebooks-5de3f",
+//   storageBucket: "mebooks-5de3f.appspot.com",
+//   messagingSenderId: "411345558211"
+// };
 
 
 
@@ -54,7 +54,7 @@ export const firebaseConfig = {
     ReactiveFormsModule,
     HttpModule,
     userRouting,
-    AngularFireModule.initializeApp(firebaseConfig),
+    // AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,

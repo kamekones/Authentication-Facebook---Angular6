@@ -111,3 +111,25 @@ html {
     vertical-align: middle;
     white-space: nowrap;
 }
+
+.cart-shopping {
+    margin-left: 0%;
+}
+
+@media (min-width: 768px) {
+    .cart-shopping {
+        margin-left: 0%;
+    }
+    .badge {
+        background-color: #E75959;
+        border-radius: 10px;
+        color: white;
+        display: inline-block;
+        font-size: 12px;
+        line-height: 1;
+        padding: 3px 7px;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+}

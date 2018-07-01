@@ -57,9 +57,9 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="!accessToken"><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
-                <li *ngIf="accessToken"><a href="#" [routerLink]="['cart']"><i class="fa fa-shopping-bag" aria-hidden="true"></i><span class="badge">3</span></a></li>
+                <li *ngIf="accessToken" class="cart-shopping"><a href="#" [routerLink]="['cart']"><i class="fa fa-shopping-bag" aria-hidden="true"></i><span class="badge">3</span></a></li>
                 <li *ngIf="!accessToken">
-                    <a href="#" data-toggle="modal" data-target="#myModal">ลงชื่อเข้าใช้</a>
+                    <a href="#MyModal" data-toggle="modal" data-target="#myModal">ลงชื่อเข้าใช้</a>
                 </li>
                 <li class="dropdown" *ngIf="accessToken">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">บัญชีผู้ใช้ 
@@ -97,7 +97,7 @@
             <div class="modal-body">
                 <div style="text-align: center">
                     <!--<button class="btn btn-primary btn-lg btn3d" (click)="facebook()"> FACEBOOK </button>-->
-                    <a href="#" title="Facebook" class="btn btn-facebook btn-lg" (click)="facebook()" style="width:50%;"><i class="fa fa-facebook fa-fw"></i>  FACEBOOK</a>
+                    <button title="Facebook" class="btn btn-facebook btn-lg" (click)="facebook()" style="width:50%;"><i class="fa fa-facebook fa-fw"></i>  FACEBOOK</button>
                 </div>
                 <br>
                 <div class="login-or">
@@ -111,13 +111,13 @@
                         <input type="text" class="form-control" id="inputUsernameEmail" placeholder="Email" name="email" required [(ngModel)]="memberLogin.email" #email="ngModel">
                     </div>
                     <div class="form-group">
-                        <a href="#" style="float: right; color:#F0BD33" class="pull-right" (click)="resetPassword()">ลืมรหัสผ่าน</a>
+                        <a style="float: right; color:#F0BD33" class="pull-right" (click)="resetPassword()">ลืมรหัสผ่าน</a>
                         <!--<label for="inputPassword">รหัสผ่าน</label>-->
                         <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" required [(ngModel)]="memberLogin.password" #password="ngModel">
                     </div>
 
                     <br><br>
-                    <p>ยังไม่มีบัญชีผู้ใช้ใช่ไหม? <a href="#" style="color:#F0BD33" onClick="$('#loginbox').hide(); $('#signupbox').show()"> ลงทะเบียนที่นี่</a></p>
+                    <p>ยังไม่มีบัญชีผู้ใช้ใช่ไหม? <a style="color:#F0BD33" onClick="$('#loginbox').hide(); $('#signupbox').show()"> ลงทะเบียนที่นี่</a></p>
                     <button type="submit" class="btn btn-primary" [disabled]="!memberLoginForm.form.valid">เข้าสู่ระบบ</button>
                 </form>
             </div>
@@ -146,15 +146,15 @@
                             <div [hidden]="!email.hasError('required')">กรุณากรอกอีเมล</div>
                             <div [hidden]="!email.hasError('pattern')">รูปแบบอีเมลควรเป็น
                                 <small>
-                                                            <b>joe@abc.com</b>
-                                                        </small>
+                                    <b>joe@abc.com</b>
+                                </small>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <!--<label for="password">รหัสผ่าน</label>-->
-                        <input type="password" class="form-control" id="password" placeholder="หัสผ่านอย่างน้อย 6 ตัว" minlength="6" [(ngModel)]="memberSignup.password" name="password" #password="ngModel">
+                        <input type="password" class="form-control" id="password" placeholder="รหัสผ่านอย่างน้อย 6 ตัว" minlength="6" [(ngModel)]="memberSignup.password" name="password" #password="ngModel">
                         <div [hidden]="password.valid || password.pristine" class="alert alert-danger" role="alert">
                             <div [hidden]="!password.hasError('minlength')">รหัสผ่านอย่างน้อย 6 ตัวอักษร</div>
                         </div>
@@ -171,7 +171,7 @@
                     <button type="submit" class="btn btn-primary" [disabled]="!memberSignupForm.form.valid"> ลงทะเบียน</button>
                 </form>
                 <br>
-                <p>ถ้ามีบัญชีผู้ใช้แล้ว <a id="signinlink" style="color:#F0BD33" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">เข้าสู่ระบบที่นี่</a>
+                <p>ถ้ามีบัญชีผู้ใช้แล้ว <a id="signinlink" style="color:#F0BD33" onclick="$('#signupbox').hide(); $('#loginbox').show()">เข้าสู่ระบบที่นี่</a>
             </div>
             <br>
         </div>

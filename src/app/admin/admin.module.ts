@@ -15,28 +15,33 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { AdminComponent } from './admin.component';
-import { AccountComponent } from './account/account.component';
-import { BannerComponent } from './banner/banner.component';
-import { BookComponent } from './book/book.component';
-import { BuyComponent } from './buy/buy.component';
-import { InboxComponent } from './inbox/inbox.component';
-import { DashboardComponent } from './dashboards/dashboard.component';
-import { MemberComponent } from './members/member.component';
-import { ModuleComponent } from './module/module.component';
-import { SellComponent } from './sell/sell.component';
-import { SettingComponent } from './setting/setting.component';
-import { TransportComponent } from './transport/transport.component';
+import { AccountComponent } from './components/account/account.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { BookComponent } from './components/book/book.component';
+import { BuyComponent } from './components/buy/buy.component';
+import { InboxComponent } from './components/inbox/inbox.component';
+import { DashboardComponent } from './components/dashboards/dashboard.component';
+import { MemberComponent } from './components/members/member.component';
+import { ModuleComponent } from './components/module/module.component';
+import { SellComponent } from './components/sell/sell.component';
+import { SettingComponent } from './components/setting/setting.component';
+import { TransportComponent } from './components/transport/transport.component';
+import { DetailsUploadComponent } from './components/detail-uploads/detail-upload.component'
+import { ListUploadComponent } from './components/list-uploads/list-upload.component'
+import { FormUploadComponent  } from './components/form-uploads/form-upload.component'
+
+import { UploadFileService } from './services/upload.service';
 
 
     
-export const firebaseConfig = {
-  apiKey: "AIzaSyCvxxjDMjIG5RfYXHv0V1HjfhWVfaGqcjM",
-  authDomain: "mebooks-5de3f.firebaseapp.com",
-  databaseURL: "https://mebooks-5de3f.firebaseio.com",
-  projectId: "mebooks-5de3f",
-  storageBucket: "mebooks-5de3f.appspot.com",
-  messagingSenderId: "411345558211"
-};
+// export const firebaseConfig = {
+//   apiKey: "AIzaSyCvxxjDMjIG5RfYXHv0V1HjfhWVfaGqcjM",
+//   authDomain: "mebooks-5de3f.firebaseapp.com",
+//   databaseURL: "https://mebooks-5de3f.firebaseio.com",
+//   projectId: "mebooks-5de3f",
+//   storageBucket: "mebooks-5de3f.appspot.com",
+//   messagingSenderId: "411345558211"
+// };
 
 
 
@@ -54,6 +59,9 @@ export const firebaseConfig = {
     SellComponent,
     SettingComponent,
     TransportComponent,
+    ListUploadComponent,
+    FormUploadComponent,
+    DetailsUploadComponent
    
   ],
   imports: [
@@ -62,7 +70,7 @@ export const firebaseConfig = {
     ReactiveFormsModule,
     HttpModule,
     adminRouting,
-    AngularFireModule.initializeApp(firebaseConfig),
+    // AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
@@ -72,7 +80,8 @@ export const firebaseConfig = {
     
   ],
   providers: [
-    AngularFireDatabase
+    AngularFireDatabase,
+    UploadFileService
   ],
   bootstrap: [AdminComponent]
 })
