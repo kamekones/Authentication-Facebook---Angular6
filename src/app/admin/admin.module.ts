@@ -27,6 +27,7 @@ import { SellComponent } from './sell/sell.component';
 import { SettingComponent } from './setting/setting.component';
 import { TransportComponent } from './transport/transport.component';
 
+
     
 export const firebaseConfig = {
   apiKey: "AIzaSyCvxxjDMjIG5RfYXHv0V1HjfhWVfaGqcjM",
@@ -52,7 +53,8 @@ export const firebaseConfig = {
     ModuleComponent,
     SellComponent,
     SettingComponent,
-    TransportComponent
+    TransportComponent,
+   
   ],
   imports: [
     BrowserModule,

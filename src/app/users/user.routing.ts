@@ -14,18 +14,18 @@ import { AdminGuard } from './guards/admin.guard';
 
 const appRoutes: Routes = [
     {
-        path: '',
+        path: 'user',
         component: UserComponent,
         children: [
             { path: '', component: HomeComponent },
+            { path: 'home', component: HomeComponent },
             { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
             { path: 'cart', component: CartComponent },
 
 
         ]
     },
-    { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
-    // { path: '/*', redirectTo: '', pathMatch: 'full' },
+
 
 ];
 

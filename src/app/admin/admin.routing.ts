@@ -23,6 +23,7 @@ const appRoutes: Routes = [
     component: AdminComponent,
     canActivate: [AdminGuard],
     children: [
+      { path: '', component: DashboardComponent, canActivate: [AdminGuard]},
       { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard]},
       { path: 'module', component: ModuleComponent, canActivate: [AdminGuard]},
       { path: 'member', component: MemberComponent, canActivate: [AdminGuard]},

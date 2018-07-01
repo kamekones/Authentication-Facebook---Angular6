@@ -16,6 +16,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.Module'
+import { AdminComponent } from './admin/admin.component'
 import { UserModule } from './users/user.module';
 
 
@@ -34,11 +35,12 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
+
     
   ],
   imports: [
-    UserModule,
     AdminModule,
+    UserModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
