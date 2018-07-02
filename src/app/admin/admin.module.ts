@@ -31,7 +31,9 @@ import { ListUploadComponent } from './components/list-uploads/list-upload.compo
 import { FormUploadComponent  } from './components/form-uploads/form-upload.component'
 
 import { UploadFileService } from './services/upload.service';
+import { ApiService } from './services/api.service';
 
+import { EqualValidator } from './password.match.directive';
 
     
 // export const firebaseConfig = {
@@ -61,7 +63,8 @@ import { UploadFileService } from './services/upload.service';
     TransportComponent,
     ListUploadComponent,
     FormUploadComponent,
-    DetailsUploadComponent
+    DetailsUploadComponent,
+    EqualValidator
    
   ],
   imports: [
@@ -81,7 +84,8 @@ import { UploadFileService } from './services/upload.service';
   ],
   providers: [
     AngularFireDatabase,
-    UploadFileService
+    UploadFileService,
+    ApiService
   ],
   bootstrap: [AdminComponent]
 })

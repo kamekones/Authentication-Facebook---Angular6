@@ -1,9 +1,76 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        Member Management
+        Add User Admin
     </div>
     <div class="panel-body">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <form (ngSubmit)="signup()" #adminSignupForm="ngForm">
+            <div class="form-group">
+                <input type="text" class="form-control" id="inputUsername" placeholder="ชื่อ" name="fname" required [(ngModel)]="admin.fname" #fname="ngModel" style="width:78%;">
+                <div [hidden]="fname.valid || fname.pristine" class="alert alert-danger" style="width:78%;">กรุณากรอกชื่อ</div>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="inputUsername" placeholder="นามสกุล" name="lname" required [(ngModel)]="admin.lname" #lname="ngModel" style="width:78%;">
+                <div [hidden]="lname.valid || lname.pristine" class="alert alert-danger" style="width:78%;">กรุณากรอกชื่อนามสกุล</div>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="inputEmail" placeholder="อีเมล" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="email" required [(ngModel)]="admin.email" #email="ngModel" style="width:78%;">
+                <div [hidden]="email.valid || email.pristine" class="alert alert-danger" style="width:78%;">
+                    <div [hidden]="!email.hasError('required')">กรุณากรอกอีเมล</div>
+                    <div [hidden]="!email.hasError('pattern')">รูปแบบอีเมลควรเป็น
+                        <small>
+                            <b>joe@abc.com</b>
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" placeholder="รหัสผ่านอย่างน้อย 6 ตัว" minlength="6" [(ngModel)]="admin.password" name="password" #password="ngModel" style="width:78%;">
+                <div [hidden]="password.valid || password.pristine" class="alert alert-danger" role="alert" style="width:78%;">
+                    <div [hidden]="!password.hasError('minlength')">รหัสผ่านอย่างน้อย 6 ตัวอักษร</div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="password" class="form-control" id="inputConfirmPassword" placeholder="ยืนยันรหัสผ่าน" validateEqual="password" name="confirmPassword" required [(ngModel)]="admin.confirmPassword" #confirmPassword="ngModel" style="width:78%;">
+                <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="alert alert-danger" style="width:78%;">
+                    รหัสผ่านไม่ต้องกัน
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="!adminSignupForm.form.valid"> ลงทะเบียน</button>
+        </form>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        List Admin Users
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <div class="table-responsive">
+                <table class="table table-striped" border="0">
+                    <tbody *ngIf="countUser != 0">
+                        <tr *ngFor="let admin of adminList">
+                            <th>{{admin.value.account.name}}</th>
+                            <th>{{admin.value.account.email}}</th>
+                            <th>
+                                <button class="btn btn-danger btn-xs" (click)="removeAdmin(admin.key)">
+                                ลบ
+                                </button>
+                            </th>
+                        </tr>
+                        <tr *ngIf="countUser == 0">
+                            <th>-</th>
+                            <th>-</th>
+                            <th>-</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

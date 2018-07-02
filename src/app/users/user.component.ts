@@ -25,7 +25,7 @@ import {
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  memberSignup = new MemberSignup("", "", "", "");
+  memberSignup = new MemberSignup("", "", "", "", "");
   memberLogin = new MemberLogin("", "");
   submitted = false;
   isAdmin: any;
@@ -47,7 +47,8 @@ export class UserComponent implements OnInit {
   signup() {
     this.submitted = true;
     console.log(this.memberSignup)
-    localStorage.setItem('username', this.memberSignup['username'])
+    localStorage.setItem('fname', this.memberSignup['fname']);
+    localStorage.setItem('lname', this.memberSignup['lname']);
     this.auth.emailSignUp(this.memberSignup['email'], this.memberSignup['password'])
       .then((res) => {
         console.log(res)
@@ -123,8 +124,7 @@ export class UserComponent implements OnInit {
     }).subscribe(items => {
       this.isAdmin = items[2].value;
       localStorage.setItem('isAdmin', items[2].value);
-      localStorage.setItem('displayName', items[1].value);
-      this.displayName = localStorage.getItem('displayName')
+      this.displayName = items[1].value;
     });
   }
 

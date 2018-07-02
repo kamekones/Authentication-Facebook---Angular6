@@ -135,10 +135,15 @@
                 <h3 style="margin: center;">สมัครสมาชิก</h3>
                 <form (ngSubmit)="signup()" #memberSignupForm="ngForm">
                     <div class="form-group">
-                        <!--<label for="inputUsername">ชื่อผู้ใช้</label>-->
-                        <input type="text" class="form-control" id="inputUsername" placeholder="ชื่อผู้ใช้" name="username" required [(ngModel)]="memberSignup.username" #username="ngModel">
-                        <div [hidden]="username.valid || username.pristine" class="alert alert-danger">กรุณากรอกชื่อผู้ใช้</div>
+                        <input type="text" class="form-control" id="inputUsername" placeholder="ชื่อ" name="fname" required [(ngModel)]="memberSignup.fname" #fname="ngModel">
+                        <div [hidden]="fname.valid || fname.pristine" class="alert alert-danger">กรุณากรอกชื่อ</div>
                     </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputUsername" placeholder="นามสกุล" name="lname" required [(ngModel)]="memberSignup.lname" #lname="ngModel">
+                        <div [hidden]="lname.valid || lname.pristine" class="alert alert-danger">กรุณากรอกชื่อนามสกุล</div>
+                    </div>
+
                     <div class="form-group">
                         <!--<label for="inputEmail">อีเมล</label>-->
                         <input type="text" class="form-control" id="inputEmail" placeholder="อีเมล" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="email" required [(ngModel)]="memberSignup.email" #email="ngModel">
@@ -157,6 +162,7 @@
                         <input type="password" class="form-control" id="password" placeholder="รหัสผ่านอย่างน้อย 6 ตัว" minlength="6" [(ngModel)]="memberSignup.password" name="password" #password="ngModel">
                         <div [hidden]="password.valid || password.pristine" class="alert alert-danger" role="alert">
                             <div [hidden]="!password.hasError('minlength')">รหัสผ่านอย่างน้อย 6 ตัวอักษร</div>
+
                         </div>
                         <!-- <div [hidden]="!password.hasError('minlength')">Password ต้องมากกว่า 6 ตัวอักษร</div> -->
                     </div>

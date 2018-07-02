@@ -9,7 +9,7 @@ import * as firebase from 'firebase/app';
 import { AngularFirestore } from 'angularfire2/firestore';
 import swal from 'sweetalert2';
 @Injectable()
-export class AuthService {
+export class ApiService {
   authState: any = null;
   dataUser: any = null;
   memberUser: any = null;
@@ -57,34 +57,6 @@ export class AuthService {
     }
   }
 
-  googleLogin() {
-    const provider = new firebase.auth.GoogleAuthProvider()
-    return this.socialSignIn(provider);
-  }
-  facebookLogin() {
-    const provider = new firebase.auth.FacebookAuthProvider()
-    return this.socialSignIn(provider);
-  }
-
-
-  private socialSignIn(provider) {
-    return this.afAuth.auth.signInWithPopup(provider)
-      .then((res) => {
-        localStorage.setItem('token', res.credential.accessToken);
-        localStorage.setItem('uid', res.user.uid);
-        this.authState = res.user
-        this.dataUser = res.additionalUserInfo
-        if (this.dataUser.isNewUser == true) {
-          this.dataUser.profile['tel'] = "";
-          console.log(this.dataUser)
-          this.updateUserData();
-        }
-        this.getUser();
-        location.reload();
-
-      })
-      .catch(error => console.log(error));
-  }
 
 
   anonymousLogin() {
@@ -97,34 +69,17 @@ export class AuthService {
   }
   emailSignUp(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        this.authState = user
-        localStorage.setItem('token', this.authState.refreshToken);
-        localStorage.setItem('uid', this.authState.uid);
-        this.authState['fname'] = localStorage.getItem('fname');
-        this.authState['lname'] = localStorage.getItem('lname');
-        this.authState['name'] = localStorage.getItem('fname')+" "+localStorage.getItem('lname');;
-        this.authState['tel'] = "";
-        this.addUserEmail()
-        window.location.reload();
-        this.router.navigate(['']);
-
-      })
-      .catch(error => { return error });
+    .then((user) => {
+      this.authState = user
+      this.authState['fname'] = localStorage.getItem('fname');
+      this.authState['lname'] = localStorage.getItem('lname');
+      this.authState['name'] = localStorage.getItem('fname')+" "+localStorage.getItem('lname');;
+      this.authState['tel'] = "";
+      this.addUserEmail()
+    })
+    .catch(error => { return error });
   }
-  emailLogin(email: string, password: string) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then((user) => {
-        this.authState = user;
-        localStorage.setItem('token', this.authState.refreshToken);
-        localStorage.setItem('uid', this.authState.uid);
-        console.log(this.authState);
-        window.location.reload();
-        this.router.navigate(['']);
 
-      })
-      .catch(error => { return error });
-  }
   resetPassword(email: string) {
     const fbAuth = firebase.auth();
     return fbAuth.sendPasswordResetEmail(email)
@@ -138,6 +93,7 @@ export class AuthService {
       }
     });
   }
+
   signOut(): void {
     localStorage.clear();
     this.afAuth.auth.signOut();
@@ -156,7 +112,7 @@ export class AuthService {
     const data = {
       email: this.dataUser.profile.email,
       name: this.dataUser.profile.name,
-      isAdmin: false,
+      isAdmin: true,
       fname: this.dataUser.profile.first_name,
       lname: this.dataUser.profile.last_name,
       tel: this.dataUser.profile.tel
@@ -174,7 +130,7 @@ export class AuthService {
     const data = {
       email: this.authState.email,
       name: this.authState.name,
-      isAdmin: false,
+      isAdmin: true,
       fname: this.authState.fname,
       lname: this.authState.lname,
       tel: this.authState.tel
@@ -183,29 +139,10 @@ export class AuthService {
       .catch(error => console.log(error));
   }
 
-  private LoginUser(): void {
-    const path = `users/${this.currentUserId}/account`; // Endpoint on firebase
-    const userEmail: AngularFireObject<any> = this.db.object(path);
-    const data = {
-      email: this.authState.email,
-    }
-    userEmail.update(data)
-      .catch(error => console.log(error));
-  }
 
 
-  getUser() {
-    this.userList.snapshotChanges().map(actions => {
-      return actions.map(action => ({ key: action.key, value: action.payload.val() }));
-    }).subscribe(items => {
-      this.tel = items[4].value;
-      if (this.tel == undefined) {
-        this.updateUserData()
-        window.location.reload();
-      }
 
-    });
-  }
+
 
 
 

@@ -1,22 +1,25 @@
-interface MemberSignupinterface {
+interface MemberAdmininterface {
     fname: string,
     lname: string,
     email: string,
     password: string,
-    confirmPassword: string
+    confirmPassword: string,
+    isAdmin: string
 }
 
-export class MemberSignup implements MemberSignupinterface {
+export class MemberAdmin implements MemberAdmininterface {
     fname: string;
     lname: string;
     email: string;
     password: string;
     confirmPassword: string;
+    isAdmin: string
     constructor(
         fname: string,
         lname: string,
         email: string,
         password: string,
-        confirmPassword: string
+        confirmPassword: string,
+        isAdmin: string
     ) { }
 }

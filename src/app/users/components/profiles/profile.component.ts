@@ -135,9 +135,9 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  removeAddress(id) {
+  async removeAddress(id) {
     this.db2.list(`users/${this.uid}/address`).remove(id).then(() => {
-      swal({
+       swal({
         position: 'center',
         type: 'success',
         title: 'Deleted',

@@ -1,0 +1,13 @@
+.table-striped {
+    width: 80%;
+    margin-left: 10%;
+}
+
+input {
+    border-radius: 0px;
+    font-family: 'Kanit', sans-serif;
+}
+
+form {
+    margin-left: 20%;
+}
