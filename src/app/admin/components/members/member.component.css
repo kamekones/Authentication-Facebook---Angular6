@@ -11,3 +11,42 @@ input {
 form {
     margin-left: 20%;
 }
+
+.btn {
+    border-radius: 0px;
+}
+
+.btn {
+    border-radius: 0px;
+    font-family: 'Kanit', sans-serif;
+}
+
+input {
+    border-radius: 0px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.alert-danger {
+    border-radius: 0px;
+    font-family: 'Kanit', sans-serif;
+}
+
+p {
+    font-family: 'Kanit', sans-serif;
+}
+
+h3 {
+    font-family: 'Kanit', sans-serif;
+}
+
+html {
+    margin: 40px auto;
+    text-align: center;
+}
+
+.img-modal {
+    width: 20%;
+    margin-top: -6%;
+    margin: -10%;
+    margin-left: 0%;
+}

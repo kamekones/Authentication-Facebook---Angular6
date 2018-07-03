@@ -35,6 +35,7 @@ export class AdminComponent implements OnInit {
       return actions.map(action => ({ key: action.key, value: action.payload.val() }));
     }).subscribe(items => {
       this.displayName = items[4].value;
+      localStorage.setItem('fullname', this.displayName);
     });
   }
 

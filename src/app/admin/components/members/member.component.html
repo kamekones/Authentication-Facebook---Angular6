@@ -47,7 +47,7 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        List Admin Users
+        List Users Admin
     </div>
     <div class="panel-body">
         <div class="table-responsive">
@@ -58,8 +58,13 @@
                             <th>{{admin.value.account.name}}</th>
                             <th>{{admin.value.account.email}}</th>
                             <th>
+                                <button class="btn btn-info btn-xs" (click)="getEditAdmin(admin.key)" data-toggle="modal" data-target="#myModal">
+                                    edit
+                                </button>
+                            </th>
+                            <th>
                                 <button class="btn btn-danger btn-xs" (click)="removeAdmin(admin.key)">
-                                ลบ
+                                    delete
                                 </button>
                             </th>
                         </tr>
@@ -67,9 +72,58 @@
                             <th>-</th>
                             <th>-</th>
                             <th>-</th>
+                            <th>-</th>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- EDIT FORM -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+
+        <!--Modal Singin-->
+        <div id="editAdminbox" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <img class="img-modal" src="assets/img/mebooks.png">
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="submitEditAdmin()" #editAdminForm="ngForm">
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputUsername" placeholder="ชื่อ" name="fname" required [(ngModel)]="editAdmin.fname" #fname="ngModel" style="width:78%;">
+                        <div [hidden]="fname.valid || fname.pristine" class="alert alert-danger" style="width:78%;">กรุณากรอกชื่อ</div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputUsername" placeholder="นามสกุล" name="lname" required [(ngModel)]="editAdmin.lname" #lname="ngModel" style="width:78%;">
+                        <div [hidden]="lname.valid || lname.pristine" class="alert alert-danger" style="width:78%;">กรุณากรอกชื่อนามสกุล</div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputEmail" placeholder="อีเมล" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="email" required [(ngModel)]="editAdmin.email" #email="ngModel" style="width:78%;">
+                        <div [hidden]="email.valid || email.pristine" class="alert alert-danger" style="width:78%;">
+                            <div [hidden]="!email.hasError('required')">กรุณากรอกอีเมล</div>
+                            <div [hidden]="!email.hasError('pattern')">รูปแบบอีเมลควรเป็น
+                                <small>
+                                    <b>joe@abc.com</b>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="btn-account">
+                        <div class="btn btn-outline-success" id="btn-account">
+                            <button type="submit" class="btn btn-success" [disabled]="!editAdminForm.form.valid" data-dismiss="myModal">
+                                บันทึกข้อมูล
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

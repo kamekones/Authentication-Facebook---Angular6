@@ -18,6 +18,7 @@ import {
 import swal from 'sweetalert2';
 
 import { MemberAdmin } from './member';
+import { EditMemberAdmin } from './edit-member';
 
 @Component({
   selector: 'member',
@@ -26,14 +27,17 @@ import { MemberAdmin } from './member';
 })
 export class MemberComponent implements OnInit {
   admin = new MemberAdmin("", "", "", "", "", "");
+  editAdmin = new EditMemberAdmin("", "", "");
   submitted = false;
-  adminList = [];
+  adminList: any;
+  idOther: any;
+  modal:any;
   accessToken = localStorage.getItem('token');
   uid = localStorage.getItem('uid');
   adminData: AngularFireList<any>;
   countUser: any;
   constructor(private api: ApiService, private router: Router, private fb: FormBuilder, private db2: AngularFireDatabase) {
-    api.getCurrentLoggedIn();
+    // api.getCurrentLoggedIn();
     this.adminData = db2.list('users/');
   }
 
@@ -72,34 +76,69 @@ export class MemberComponent implements OnInit {
   }
 
   async getAdmin() {
+    this.adminList = [];
     this.adminData.snapshotChanges().map(actions => {
       return actions.map(action => ({ key: action.key, value: action.payload.val() }));
     }).subscribe(items => {
       var x = 0;
       for(let i in items){
-        if(items[i].value.account.isAdmin === true){
+        if(items[i].value.account.isAdmin === true && items[i].value.account.name != localStorage.getItem('fullname')){
           this.adminList[x] = items[i];
           x++;
         }
       }
-      this.countUser = this.adminList.length
-      console.log(this.adminList)
-      
+      this.countUser = this.adminList.length      
     });
   }
 
-  removeAdmin(id){
-    this.db2.list(`users/`).remove(id).then(() => {
-      this.getAdmin();
-      swal({
+  async removeAdmin(id) {
+    this.adminData.remove(id).then(() => {
+       swal({
         position: 'center',
         type: 'success',
         title: 'Deleted',
         showConfirmButton: false,
         timer: 1000,
       })
-     
+      this.getAdmin();
+
     })
+  }
+
+  getEditAdmin(id){
+    localStorage.setItem('idOther', id);
+    this.db2.list('users/'+id).snapshotChanges().map(actions => {
+      return actions.map(action => ({ key: action.key, value: action.payload.val() }));
+    }).subscribe(items => {
+      this.editAdmin["email"] = items[0].value.email;
+      this.editAdmin["fname"] = items[0].value.fname;
+      this.editAdmin["lname"] = items[0].value.lname;
+      
+    });
+    
+  }
+
+  submitEditAdmin(){
+    this.idOther = localStorage.getItem('idOther');
+    this.submitted = true;
+    console.log(this.editAdmin);
+    const path = '/users/' + this.idOther + '/account'; 
+    const userRef: AngularFireObject<any> = this.db2.object(path);
+    const data = {
+      name: this.editAdmin.fname + " " + this.editAdmin.lname,
+      fname: this.editAdmin.fname,
+      lname: this.editAdmin.lname,
+      email: this.editAdmin.email,
+    }
+    swal({
+      position: 'center',
+      type: 'success',
+      title: 'Saved',
+      showConfirmButton: false,
+      timer: 1000,
+    }) 
+    userRef.update(data)
+      .catch(error => console.log(error));  
   }
 
 }

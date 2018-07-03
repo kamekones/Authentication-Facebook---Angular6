@@ -106,23 +106,7 @@ export class ApiService {
     })
     window.location.reload();
   }
-  private updateUserData(): void {
-    const path = `users/${this.currentUserId}/account`; // Endpoint on firebase
-    const userRef: AngularFireObject<any> = this.db.object(path);
-    const data = {
-      email: this.dataUser.profile.email,
-      name: this.dataUser.profile.name,
-      isAdmin: true,
-      fname: this.dataUser.profile.first_name,
-      lname: this.dataUser.profile.last_name,
-      tel: this.dataUser.profile.tel
-
-
-
-    }
-    userRef.update(data)
-      .catch(error => console.log(error));
-  }
+ 
 
   private addUserEmail(): void {
     const path = `users/${this.currentUserId}/account`; // Endpoint on firebase
