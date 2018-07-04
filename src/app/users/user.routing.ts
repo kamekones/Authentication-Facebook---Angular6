@@ -14,7 +14,7 @@ import { AdminGuard } from './guards/admin.guard';
 
 const appRoutes: Routes = [
     {
-        path: 'user',
+        path: '',
         component: UserComponent,
         children: [
             { path: '', component: HomeComponent },
@@ -22,10 +22,10 @@ const appRoutes: Routes = [
             { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
             { path: 'cart', component: CartComponent },
 
-
         ]
     },
-
+    
+    
 
 ];
 

@@ -20,7 +20,7 @@ import { FileUpload } from '../../FileUpload/fileupload';
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent implements OnInit {
- 
+ p=1;
 
   constructor() {
     

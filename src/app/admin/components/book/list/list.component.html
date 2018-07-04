@@ -1,0 +1,16 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">รายการหนังสือ</div>
+    <div>
+        <div class="panel-body">
+            <div class="card-book" *ngFor="let file of bookUploads |  paginate: { itemsPerPage: 3, currentPage: p }">
+                <button class="btn btn-danger btn-xs" style="float: right" (click)='deleteBook(file.key)'>ลบ</button>
+                <button class="btn btn-info btn-xs" style="float: right; margin-right: 1%;">แก้ไข</button>
+                <img src="{{file.url}}" alt="{{file.name}}" style="width:100px; height:100px; float: left" />
+                <p>{{file.namebook}}</p>
+                <p>ราคา: ฿{{file.price2}}.00</p>
+                <p>คงเหลือในสต๊อก: {{file.total}} เล่ม</p>
+            </div>
+        </div>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

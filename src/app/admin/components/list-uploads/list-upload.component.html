@@ -1,8 +1,13 @@
 <div class="panel panel-primary">
     <div class="panel-heading">List of Images</div>
-    <div *ngFor="let file of fileUploads">
+    <div>
         <div class="panel-body">
-            <details-upload [fileUpload]='file'></details-upload>
+            <div class="card-book" *ngFor="let file of fileUploads |  paginate: { itemsPerPage: 3, currentPage: p }">
+                <details-upload [fileUpload]='file'></details-upload>
+            </div>
+
         </div>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
     </div>
 </div>

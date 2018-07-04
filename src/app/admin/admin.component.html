@@ -22,15 +22,15 @@
                 <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" [routerLink]="['']" target="_blank">Visit Web</a></li>
+                <li><a href="#" [routerLink]="['']" target="_blank">กลับไปที่เว็บไซต์</a></li>
                 <li class="dropdown ">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Account
+						บัญชีผู้ใช้
 						<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#" [routerLink]="['/admin/account']"><i class="fa fa-user"></i> {{displayName}}</a></li>
                         <li class="divider"></li>
-                        <li><a href="#" (click)="this.auth.signOut()"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                        <li><a href="#" (click)="this.auth.signOut()"><span class="glyphicon glyphicon-off"></span> ออกจากระบบ</a></li>
                     </ul>
                 </li>
             </ul>
@@ -42,21 +42,27 @@
 <div class="container-fluid main-container">
     <div class="col-md-2 sidebar">
         <ul class="nav nav-pills nav-stacked admin-menu">
-            <li><a href="#" [routerLink]="['/admin/dashboard']"><i class="fa fa-home fa-fw"></i>Dashboard</a></li>
-            <li><a href="#" [routerLink]="['/admin/module']"><i class="fa fa-list-alt fa-fw"></i>Module</a></li>
-            <li><a href="#" [routerLink]="['/admin/member']"><i class="fa fa-bar-chart-o fa-fw"></i>Member</a></li>
-            <li><a href="#" [routerLink]="['/admin/banner']"><i class="fa fa-table fa-fw"></i>Banner</a></li>
-            <li><a href="#" [routerLink]="['/admin/book']"><i class="fa fa-tasks fa-fw"></i>Books</a></li>
-            <li><a href="#" [routerLink]="['/admin/sell']"><i class="fa fa-calendar fa-fw"></i>Sell</a></li>
+            <li><a href="#" [routerLink]="['/admin/dashboard']"><i class="fa fa-home fa-fw"></i>แดชบอร์ด</a></li>
+            <li><a href="#" [routerLink]="['/admin/module']"><i class="fa fa-list-alt fa-fw"></i>โมดูล</a></li>
+            <li><a href="#" [routerLink]="['/admin/member']"><i class="fa fa-bar-chart-o fa-fw"></i>จัดการแอดมิน</a></li>
+            <li><a href="#" [routerLink]="['/admin/banner']"><i class="fa fa-table fa-fw"></i>รูปสไลด์</a></li>
             <li>
-                <a data-toggle="collapse" data-target="#buy" class="collapsed active"><i class="fa fa-book fa-fw"></i>Buy <span class="caret"></span></a>
-                <ul class="nav admin-menu collapse" id="buy">
-                    <li><a href="#" [routerLink]="['/admin/buy']">Payment</a></li>
-                    <li><a href="#" [routerLink]="['/admin/transport']">Transportation</a></li>
+                <a data-toggle="collapse" data-target="#book" class="collapsed active"><i class="fa fa-tasks fa-fw"></i>หนังสือ <span class="caret"></span></a>
+                <ul class="nav admin-menu collapse" id="book">
+                    <li><a href="#" [routerLink]="['/admin/book']">เพิ่มหนังสือ</a></li>
+                    <li><a href="#" [routerLink]="['/admin/list']">รายการหนังสือ</a></li>
                 </ul>
             </li>
-            <li><a href="#" data-target-id="applications" [routerLink]="['/admin/inbox']"><i class="fa fa-pencil fa-fw"></i>Inbox</a></li>
-            <li><a href="#" data-target-id="settings" [routerLink]="['/admin/setting']"><i class="fa fa-cogs fa-fw"></i>Settings</a></li>
+            <li><a href="#" [routerLink]="['/admin/sell']"><i class="fa fa-calendar fa-fw"></i>จัดการการขาย</a></li>
+            <li>
+                <a data-toggle="collapse" data-target="#buy" class="collapsed active"><i class="fa fa-book fa-fw"></i>จัดการการซื้อ <span class="caret"></span></a>
+                <ul class="nav admin-menu collapse" id="buy">
+                    <li><a href="#" [routerLink]="['/admin/buy']">จัดการการชำระเงิน</a></li>
+                    <li><a href="#" [routerLink]="['/admin/transport']">จัดการการขนส่ง</a></li>
+                </ul>
+            </li>
+            <li><a href="#" data-target-id="applications" [routerLink]="['/admin/inbox']"><i class="fa fa-pencil fa-fw"></i>ติดต่อสอบถาม</a></li>
+            <li><a href="#" data-target-id="settings" [routerLink]="['/admin/setting']"><i class="fa fa-cogs fa-fw"></i>ตั้งค่า</a></li>
         </ul>
     </div>
 

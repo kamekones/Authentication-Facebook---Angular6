@@ -8,7 +8,9 @@ import { AdminComponent } from './admin/admin.component'
 
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/user', pathMatch: 'full' },
+  // { path: '', redirectTo: '/user', pathMatch: 'full' },
+  { path: '', component: UserComponent },
+
 
 
 ];

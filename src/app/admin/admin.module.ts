@@ -18,6 +18,7 @@ import { AdminComponent } from './admin.component';
 import { AccountComponent } from './components/account/account.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { BookComponent } from './components/book/book.component';
+import { ListComponent } from './components/book/list/list.component';
 import { BuyComponent } from './components/buy/buy.component';
 import { InboxComponent } from './components/inbox/inbox.component';
 import { DashboardComponent } from './components/dashboards/dashboard.component';
@@ -32,9 +33,10 @@ import { FormUploadComponent  } from './components/form-uploads/form-upload.comp
 
 import { UploadFileService } from './services/upload.service';
 import { ApiService } from './services/api.service';
+import {BookFileService } from './services/book.service';
 
 import { EqualValidator } from './password.match.directive';
-
+import {NgxPaginationModule} from 'ngx-pagination';
     
 // export const firebaseConfig = {
 //   apiKey: "AIzaSyCvxxjDMjIG5RfYXHv0V1HjfhWVfaGqcjM",
@@ -64,6 +66,7 @@ import { EqualValidator } from './password.match.directive';
     ListUploadComponent,
     FormUploadComponent,
     DetailsUploadComponent,
+    ListComponent,
     EqualValidator
    
   ],
@@ -73,7 +76,7 @@ import { EqualValidator } from './password.match.directive';
     ReactiveFormsModule,
     HttpModule,
     adminRouting,
-    // AngularFireModule.initializeApp(firebaseConfig),
+    NgxPaginationModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
@@ -85,7 +88,8 @@ import { EqualValidator } from './password.match.directive';
   providers: [
     AngularFireDatabase,
     UploadFileService,
-    ApiService
+    ApiService,
+    BookFileService
   ],
   bootstrap: [AdminComponent]
 })

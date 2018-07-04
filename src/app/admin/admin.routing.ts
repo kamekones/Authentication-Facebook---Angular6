@@ -15,6 +15,7 @@ import { ModuleComponent } from './components/module/module.component';
 import { SellComponent } from './components/sell/sell.component';
 import { SettingComponent } from './components/setting/setting.component';
 import { TransportComponent } from './components/transport/transport.component';
+import { ListComponent } from './components/book/list/list.component';
 
 import { AdminGuard } from '../users/guards/admin.guard';
 
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
       { path: 'module', component: ModuleComponent, canActivate: [AdminGuard]},
       { path: 'member', component: MemberComponent, canActivate: [AdminGuard]},
       { path: 'banner', component: BannerComponent, canActivate: [AdminGuard]},
+      { path: 'list', component: ListComponent, canActivate: [AdminGuard]},
       { path: 'book', component: BookComponent, canActivate: [AdminGuard]},
       { path: 'sell', component: SellComponent, canActivate: [AdminGuard]},
       { path: 'buy', component: BuyComponent, canActivate: [AdminGuard]},
@@ -35,7 +37,6 @@ const appRoutes: Routes = [
       { path: 'setting', component: SettingComponent, canActivate: [AdminGuard]},
       { path: 'account', component: AccountComponent, canActivate: [AdminGuard]},
       { path: 'transport', component: TransportComponent, canActivate: [AdminGuard]},
-      // { path: '**', redirectTo: 'admin/dashboard', pathMatch: 'full' }
     ]
   
   },

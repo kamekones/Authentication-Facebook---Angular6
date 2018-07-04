@@ -5,13 +5,13 @@ import * as firebase from 'firebase';
 import { FileUpload } from '../FileUpload/fileupload';
 
 @Injectable()
-export class UploadFileService {
+export class BookFileService {
 
   constructor(private db: AngularFireDatabase) {}
 
-  private basePath = '/banners';
+  private basePath = '/books';
 
-  pushFileToStorage(fileUpload: FileUpload, progress: {percentage: number}) {
+  pushFileToStorage(fileUpload: FileUpload) {
     const storageRef = firebase.storage().ref();
     const uploadTask = storageRef.child(`${this.basePath}/${fileUpload.file.name}`).put(fileUpload.file);
 
@@ -19,7 +19,7 @@ export class UploadFileService {
       (snapshot) => {
         // in progress
         const snap = snapshot as firebase.storage.UploadTaskSnapshot
-        progress.percentage = Math.round((snap.bytesTransferred / snap.totalBytes) * 100)
+        
       },
       (error) => {
         // fail
@@ -36,8 +36,6 @@ export class UploadFileService {
 
   private saveFileData(fileUpload: FileUpload) {
     this.db.list(`${this.basePath}/`).push(fileUpload);
-   
-    
   }
 
   getFileUploads(): AngularFireList<FileUpload> {

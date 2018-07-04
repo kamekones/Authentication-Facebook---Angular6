@@ -1,0 +1,33 @@
+.show-account {
+    width: 50%;
+    float: left;
+}
+
+.edit {
+    float: right;
+}
+
+input,
+.btn {
+    border-radius: 0px;
+}
+
+.btn-outline-success#btn-account {
+    float: left;
+}
+
+.btn-outline-danger#btn-account-cancal {
+    float: left;
+    margin-left: -6%;
+}
+
+@media (min-width: 768px) {
+    .btn-outline-success#btn-account {
+        float: left;
+        margin-left: 25%;
+    }
+    .btn-outline-danger#btn-account-cancal {
+        float: left;
+        margin-left: -2%;
+    }
+}

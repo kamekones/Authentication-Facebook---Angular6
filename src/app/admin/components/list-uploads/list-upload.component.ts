@@ -11,11 +11,12 @@ import { FileUpload } from '../../FileUpload/fileupload';
 export class ListUploadComponent implements OnInit {
 
   fileUploads: any[];
+  p: number = 1;
 
   constructor(private uploadService: UploadFileService) { }
 
   ngOnInit() {
-    this.uploadService.getFileUploads(6).snapshotChanges().map(changes => {
+    this.uploadService.getFileUploads().snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     }).subscribe(fileUploads => {
       this.fileUploads = fileUploads;

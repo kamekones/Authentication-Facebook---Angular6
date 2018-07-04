@@ -1,9 +1,230 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        Book Management
+        Add new book
     </div>
     <div class="panel-body">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <div class="panel panel-default">
+            <div class="panel-body form-horizontal payment-form">
+                <form (ngSubmit)="addBookSubmit()" #addBookForm="ngForm">
+
+                    <div class="form-group">
+                        <label for="namebook" class="col-sm-3 control-label">ชื่อหนังสือ</label>
+                        <div class="col-sm-9">
+                            <input type="name" class="form-control" id="name" placeholder="ชื่อหนังสือ" required [(ngModel)]="book.namebook" name="namebook" #namebook="ngModel" style="width:78%;">
+                            <div [hidden]="namebook.valid || namebook.pristine" class="alert alert-danger" style="width:78%;">กรุณากรอกชื่อหนังสือ</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category" class="col-sm-3 control-label">หมวดหมู่</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" style="width:78%;">
+                                <option value="" selected="selected">(โปรดเลือกหมวดหมู่)</option>
+                                <option value="วิศวกรรมศาสตร์"  (click)="categoty('วิศวกรรมศาสตร์')">วิศวกรรมศาสตร์</option>
+                                <option value="เตรียมสอบมัธยม"  (click)="categoty('เตรียมสอบมัธยม')">เตรียมสอบมัธยม</option>
+                                <option value="ภาษาต่างประเทศ"  (click)="categoty('ภาษาต่างประเทศ')" (change)="selectCategory($event.target.value)">ภาษาต่างประเทศ</option>
+                                <option value="กฎหมาย"  (click)="categoty('กฎหมาย')" (change)="selectCategory($event.target.value)">กฎหมาย</option>
+                            </select>
+                        </div>
+                        <div class="categoty">
+                            <table border="0" class="table-categoty" *ngIf="valueCategory=='วิศวกรรมศาสตร์'" (change)="selectCategory($event.target.value)">
+                                <tr>
+                                    <td>
+                                        <div class="checkbox checkbox-inline checkbox-primary">
+                                            <input type="checkbox" id="inlineCheckbox1" value="เครื่องกล">
+                                            <label for="inlineCheckbox1"> เครื่องกล </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox checkbox-inline checkbox-primary">
+                                            <input type="checkbox" id="inlineCheckbox2" value="ยานยนต์">
+                                            <label for="inlineCheckbox2"> ยานยนต์ </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox checkbox-inline checkbox-primary">
+                                            <input type="checkbox" id="inlineCheckbox3" value="อากาศยาน">
+                                            <label for="inlineCheckbox3"> อากาศยาน </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="checkbox checkbox-inline checkbox-primary">
+                                            <input type="checkbox" id="inlineCheckbox4" value="ไฟฟ้า">
+                                            <label for="inlineCheckbox4"> ไฟฟ้า </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox checkbox-inline checkbox-primary">
+                                            <input type="checkbox" id="inlineCheckbox5" value="เคมี">
+                                            <label for="inlineCheckbox5"> เคมี </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox checkbox-inline checkbox-primary">
+                                            <input type="checkbox" id="inlineCheckbox6" value="สาขาอื่นๆ">
+                                            <label for="inlineCheckbox6"> สาขาอื่นๆ </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table border="0" class="table-categoty" *ngIf="valueCategory=='เตรียมสอบมัธยม'" (change)="selectCategory($event.target.value)">
+                                <tr>
+                                    <td>
+                                        <div class="checkbox checkbox-inline checkbox-primary">
+                                            <input type="checkbox" id="inlineCheckbox7" value="GAT/PAT">
+                                            <label for="inlineCheckbox7"> GAT/PAT </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox checkbox-inline checkbox-primary">
+                                            <input type="checkbox" id="inlineCheckbox8" value="ฟิสิกส์">
+                                            <label for="inlineCheckbox8"> ฟิสิกส์ </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox checkbox-inline checkbox-primary">
+                                            <input type="checkbox" id="inlineCheckbox9" value="เคมี">
+                                            <label for="inlineCheckbox9"> เคมี </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="checkbox checkbox-inline checkbox-primary">
+                                            <input type="checkbox" id="inlineCheckbox10" value="ชีววิทยา">
+                                            <label for="inlineCheckbox10"> ชีววิทยา </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox checkbox-inline checkbox-primary">
+                                            <input type="checkbox" id="inlineCheckbox11" value="คณิตศาสตร์">
+                                            <label for="inlineCheckbox11"> คณิตศาสตร์ </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox checkbox-inline checkbox-primary">
+                                            <input type="checkbox" id="inlineCheckbox12" value="วิชาอื่นๆ">
+                                            <label for="inlineCheckbox12"> วิชาอื่นๆ </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coverImg" class="col-sm-3 control-label">รูปปกหนังสือ 1 รูป</label>
+                        <div class="col-sm-9">
+                            <label class="btn btn-default" style="width:78%;">
+                                 <input type="file" (change)="selectFile($event)" >
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="price2" class="col-sm-3 control-label">จำนวน</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" placeholder="จำนวนเล่ม" required [(ngModel)]="book.total" name="total" min="1" #total="ngModel" style="width:78%;">
+                            <div [hidden]="total.valid || total.pristine" class="alert alert-danger" style="width:78%;">
+                                <div [hidden]="!total.hasError('required')">กรุณาระบุจำนวน</div>
+                                <div [hidden]="!total.hasError('min')">กรุณาระบุจำนวน</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="price2" class="col-sm-3 control-label">ราคาที่ต้องการขาย</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="ราคาที่ต้องการขาย" required [(ngModel)]="book.price2" name="price2" #price2="ngModel" style="width:78%;">
+                            <div [hidden]="price2.valid || price2.pristine" class="alert alert-danger" style="width:78%;">
+                                <div [hidden]="!price2.hasError('required')">กรุณาระบุราคาที่ต้องการขาย</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price1" class="col-sm-3 control-label">ราคามือ1</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="ราคามือ1" required [(ngModel)]="book.price1" name="price1" #price1="ngModel" style="width:78%;">
+                            <div [hidden]="price1.valid || price1.pristine" class="alert alert-danger" style="width:78%;">
+                                <div [hidden]="!price1.hasError('required')">กรุณาระบุราคามือ1</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="condition" class="col-sm-3 control-label">สภาพหนังสือ</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" pattern="" class="form-control" name="condition" placeholder="โปรดอธิบายสภาพหนังสือ" required [(ngModel)]="book.condition" #condition="ngModel" style="width:78%;"></textarea>
+                            <div [hidden]="condition.valid || condition.pristine" class="alert alert-danger" style="width:78%;">
+                                <div [hidden]="!condition.hasError('required')">โปรดอธิบายสภาพหนังสือ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ถ้าเป็นมือ1 ค่อยหาย -->
+
+                    <div class="form-group">
+                        <label for="detail" class="col-sm-3 control-label">รายละเอียดหนังสือ</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" pattern="" class="form-control" name="detail" placeholder="โปรดอธิบายรายละเอียดหนังสือ" required [(ngModel)]="book.detail" #detail="ngModel" style="width:78%;"></textarea>
+                            <div [hidden]="detail.valid || detail.pristine" class="alert alert-danger" style="width:78%;">
+                                <div [hidden]="!detail.hasError('required')">โปรดอธิบายรายละเอียดหนังสือ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transport" class="col-sm-3 control-label">วิธีขนส่งสินค้า</label>
+                        <div class="col-sm-9" id="transport">
+                            <div class="checkbox checkbox-inline checkbox-warning">
+                                <input type="checkbox" id="inlineCheckbox13" value="Kerry" (change)="selectTransport($event.target.value)">
+                                <label for="inlineCheckbox13"> Kerry </label>
+                            </div>
+                            <div class="checkbox checkbox-inline checkbox-warning">
+                                <input type="checkbox" id="inlineCheckbox14" value="SCG" (change)="selectTransport($event.target.value)">
+                                <label for="inlineCheckbox14"> SCG  </label>
+                            </div>
+                            <div class="checkbox checkbox-inline checkbox-warning">
+                                <input type="checkbox" id="inlineCheckbox15" value="EMS" (change)="selectTransport($event.target.value)">
+                                <label for="inlineCheckbox15"> EMS </label>
+                            </div>
+                            <div class="checkbox checkbox-inline checkbox-warning">
+                                <input type="checkbox" id="inlineCheckbox16" value="ตีพิมพ์ลงทะเบียน" (change)="selectTransport($event.target.value)">
+                                <label for="inlineCheckbox16"> ตีพิมพ์ลงทะเบียน </label>
+                            </div>
+                            <div class="checkbox checkbox-inline checkbox-warning">
+                                <input type="checkbox" id="inlineCheckbox17" value="ลงทะเบียน" (change)="selectTransport($event.target.value)">
+                                <label for="inlineCheckbox17"> ลงทะเบียน </label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div *ngIf="currentFileUpload">
+                        <h4>รอสักครู่กำลังบันทึก...</h4>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}" style="width:78%;">
+                                {{progress.percentage}}%
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" id="btn-account">
+                        <div class="btn btn-outline-success" id="btn-account">
+                            <button type="submit" class="btn btn-success" [disabled]="!addBookForm.form.valid">
+                                    Add New Book
+                             </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
