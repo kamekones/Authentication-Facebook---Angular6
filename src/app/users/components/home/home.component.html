@@ -6,66 +6,15 @@
     <h4 class="fontsize">หนังสือมาใหม่</h4>
     <div class="row">
         <!-- BEGIN PRODUCTS -->
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3 col-sm-6" *ngFor="let book of NewBook">
             <span class="thumbnail">
-      			<img style="height:325px; width:300px;" src="https://asset.mebmarket.com/meb/server1/31751/Thumbnail/large.gif?2" alt="...">
-      			<h4>Product Tittle</h4>
-      			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+      			<img style="height:200px; width:auto;" src="{{book.value.url}}" alt="{{book.value.name}}">
+      			<h4>{{book.value.namebook}}</h4>
+      			<p>{{book.value.detail}} </p>
       			<hr class="line">
       			<div class="row">
       				<div class="col-md-6 col-sm-6">
-      					<p class="price">$29,90</p>
-      				</div>
-      				<div class="col-md-6 col-sm-6">
-      					<button class="btn btn-success right" ><i _ngcontent-c0="" aria-hidden="true" class="fa fa-search"></i> รายละเอียด</button>
-      				</div>
-      				
-      			</div>
-    		</span>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <span class="thumbnail">
-      			<img style="height:325px; width:300px;" src="https://images-se-ed.com/ws/Storage/Originals/978974/186/9789741862047L.jpg?h=9c03e4090bc226e1cfbeb3484d824c48" alt="...">
-      			<h4>Product Tittle</h4>
-      			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-      			<hr class="line">
-      			<div class="row">
-      				<div class="col-md-6 col-sm-6">
-      					<p class="price">$29,90</p>
-      				</div>
-      				<div class="col-md-6 col-sm-6">
-      					<button class="btn btn-success right" ><i _ngcontent-c0="" aria-hidden="true" class="fa fa-search"></i> รายละเอียด</button>
-      				</div>
-      				
-      			</div>
-    		</span>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <span class="thumbnail">
-      			<img style="height:325px; width:300px;" src="http://www.iadth.com/2016/image/cache/catalog/04-mattayom-pai/category-04/file_88_5-800x800.jpg" alt="...">
-      			<h4>Product Tittle</h4>
-      			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-      			<hr class="line">
-      			<div class="row">
-      				<div class="col-md-6 col-sm-6">
-      					<p class="price">$29,90</p>
-      				</div>
-      				<div class="col-md-6 col-sm-6">
-      					<button class="btn btn-success right" ><i _ngcontent-c0="" aria-hidden="true" class="fa fa-search"></i> รายละเอียด</button>
-      				</div>
-      				
-      			</div>
-    		</span>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <span class="thumbnail">
-      			<img style="height:325px; width:300px;" src="https://asset.mebmarket.com/meb/server1/44544/Thumbnail/large.gif?2" alt="...">
-      			<h4>Product Tittle</h4>
-      			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-      			<hr class="line">
-      			<div class="row">
-      				<div class="col-md-6 col-sm-6">
-      					<p class="price">$29,90</p>
+      					<p class="price">฿{{book.value.price2}}.00</p>
       				</div>
       				<div class="col-md-6 col-sm-6">
       					<button class="btn btn-success right" ><i _ngcontent-c0="" aria-hidden="true" class="fa fa-search"></i> รายละเอียด</button>

@@ -39,8 +39,7 @@ export class ProfileComponent implements OnInit {
   userList: AngularFireList<any>;
   addressList: AngularFireList<any>;
   banksList: AngularFireList<any>;
-  // count = 0;
-  // countBank = 0;
+  keyWordEdit = "";
   countAdress: any;
   countBanks: any;
   increse: any;
@@ -57,8 +56,13 @@ export class ProfileComponent implements OnInit {
     this.banksList = db2.list(`users/${this.uid}/banks`);
   }
 
+  edit(key) {
+    this.keyWordEdit = key;
+  }
+
 
   user() {
+    this.keyWordEdit = '';
     this.submitted = true;
     if (!this.model["fname"] || !this.model["lname"] || !this.model["email"] || !this.model["tel"] || this.model["fname"] == "" || this.model["lname"] == "" ||
       this.model["email"] == "" || this.model["tel"] == "") {

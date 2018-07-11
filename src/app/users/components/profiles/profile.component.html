@@ -33,10 +33,17 @@
                     <div class="panel-body">
                         <div class="panel panel-default">
                             <div class="panel-body form-horizontal payment-form">
-                                <br>
+                                <div class="show-account" *ngIf="keyWordEdit!='edit'">
+                                    <p><strong>Fisrt name : </strong><span>{{this.model["fname"]}}</span></p>
+                                    <p><strong>Last name : </strong><span>{{this.model["lname"]}}</span></p>
+                                    <p><strong>Email : </strong><span>{{this.model["email"]}}</span></p>
+                                    <p><strong>Phone Number : </strong><span>{{this.model["tel"]}}</span></p>
+                                </div>
+                                <div class="edit" *ngIf="keyWordEdit!='edit'">
+                                    <a [routerLink]="['admin/account']" (click)="edit('edit')">แก้ไข</a>
+                                </div>
 
-
-                                <form (ngSubmit)="user()" #userForm="ngForm">
+                                <form (ngSubmit)="user()" #userForm="ngForm" *ngIf="keyWordEdit=='edit'">
 
                                     <div class="form-group">
                                         <label for="firstname" class="col-sm-3 control-label">ชื่อ</label>
@@ -78,7 +85,7 @@
                                             <div [hidden]="tel.valid || tel.pristine" class="alert alert-danger">
                                                 <div [hidden]="!tel.hasError('minlength')">เบอร์ติดต่อควรมี 10 ตัว</div>
                                                 <div [hidden]="!tel.hasError('required')">กรุณากรอกเบอ์โทรศัพท์มือถือ</div>
-                                                <div [hidden]="!tel.hasError('pattern')">เบอร์เบอ์โทรศัพท์มือถือควรเป็นตัวเลขทั้งหมด</div>
+                                                <div [hidden]="!tel.hasError('pattern')">เบอร์โทรศัพท์มือถือควรเป็นตัวเลขทั้งหมด</div>
                                             </div>
                                         </div>
                                     </div>
@@ -88,6 +95,11 @@
                                         <div class="btn btn-outline-success" id="btn-account">
                                             <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">
                                                 บันทึกข้อมูล
+                                            </button>
+                                        </div>
+                                        <div class="btn btn-outline-danger" id="btn-account-cancal">
+                                            <button type="submit" class="btn btn-danger" (click)="keyWordEdit=''">
+                                                Cancal
                                             </button>
                                         </div>
                                     </div>

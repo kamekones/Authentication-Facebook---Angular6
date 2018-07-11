@@ -1,3 +1,5 @@
+<title>เพิ่มหนังสือ | Admin</title>
+
 <div class="panel panel-default">
     <div class="panel-heading">
         Add new book
@@ -16,109 +18,80 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="category" class="col-sm-3 control-label">หมวดหมู่</label>
+                        <label for="category" class="col-sm-3 control-label">ระดับการศึกษา</label>
                         <div class="col-sm-9">
-                            <select class="form-control" style="width:78%;">
+                            <select class="form-control" style="width:78%;" (change)="Education($event.target.value)">
                                 <option value="" selected="selected">(โปรดเลือกหมวดหมู่)</option>
-                                <option value="วิศวกรรมศาสตร์"  (click)="categoty('วิศวกรรมศาสตร์')">วิศวกรรมศาสตร์</option>
-                                <option value="เตรียมสอบมัธยม"  (click)="categoty('เตรียมสอบมัธยม')">เตรียมสอบมัธยม</option>
-                                <option value="ภาษาต่างประเทศ"  (click)="categoty('ภาษาต่างประเทศ')" (change)="selectCategory($event.target.value)">ภาษาต่างประเทศ</option>
-                                <option value="กฎหมาย"  (click)="categoty('กฎหมาย')" (change)="selectCategory($event.target.value)">กฎหมาย</option>
+                                <option value="มหาวิทยาลัย" >มหาวิทยาลัย</option>
+                                <option value="มัธยมปลาย">มัธยมปลาย</option>
                             </select>
                         </div>
-                        <div class="categoty">
-                            <table border="0" class="table-categoty" *ngIf="valueCategory=='วิศวกรรมศาสตร์'" (change)="selectCategory($event.target.value)">
-                                <tr>
-                                    <td>
-                                        <div class="checkbox checkbox-inline checkbox-primary">
-                                            <input type="checkbox" id="inlineCheckbox1" value="เครื่องกล">
-                                            <label for="inlineCheckbox1"> เครื่องกล </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="checkbox checkbox-inline checkbox-primary">
-                                            <input type="checkbox" id="inlineCheckbox2" value="ยานยนต์">
-                                            <label for="inlineCheckbox2"> ยานยนต์ </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="checkbox checkbox-inline checkbox-primary">
-                                            <input type="checkbox" id="inlineCheckbox3" value="อากาศยาน">
-                                            <label for="inlineCheckbox3"> อากาศยาน </label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="checkbox checkbox-inline checkbox-primary">
-                                            <input type="checkbox" id="inlineCheckbox4" value="ไฟฟ้า">
-                                            <label for="inlineCheckbox4"> ไฟฟ้า </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="checkbox checkbox-inline checkbox-primary">
-                                            <input type="checkbox" id="inlineCheckbox5" value="เคมี">
-                                            <label for="inlineCheckbox5"> เคมี </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="checkbox checkbox-inline checkbox-primary">
-                                            <input type="checkbox" id="inlineCheckbox6" value="สาขาอื่นๆ">
-                                            <label for="inlineCheckbox6"> สาขาอื่นๆ </label>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                            <table border="0" class="table-categoty" *ngIf="valueCategory=='เตรียมสอบมัธยม'" (change)="selectCategory($event.target.value)">
-                                <tr>
-                                    <td>
-                                        <div class="checkbox checkbox-inline checkbox-primary">
-                                            <input type="checkbox" id="inlineCheckbox7" value="GAT/PAT">
-                                            <label for="inlineCheckbox7"> GAT/PAT </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="checkbox checkbox-inline checkbox-primary">
-                                            <input type="checkbox" id="inlineCheckbox8" value="ฟิสิกส์">
-                                            <label for="inlineCheckbox8"> ฟิสิกส์ </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="checkbox checkbox-inline checkbox-primary">
-                                            <input type="checkbox" id="inlineCheckbox9" value="เคมี">
-                                            <label for="inlineCheckbox9"> เคมี </label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="checkbox checkbox-inline checkbox-primary">
-                                            <input type="checkbox" id="inlineCheckbox10" value="ชีววิทยา">
-                                            <label for="inlineCheckbox10"> ชีววิทยา </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="checkbox checkbox-inline checkbox-primary">
-                                            <input type="checkbox" id="inlineCheckbox11" value="คณิตศาสตร์">
-                                            <label for="inlineCheckbox11"> คณิตศาสตร์ </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="checkbox checkbox-inline checkbox-primary">
-                                            <input type="checkbox" id="inlineCheckbox12" value="วิชาอื่นๆ">
-                                            <label for="inlineCheckbox12"> วิชาอื่นๆ </label>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
+                    </div>
+                    <div class="form-group" *ngIf="valueEducation == 'มหาวิทยาลัย'">
+                        <label for="category" class="col-sm-3 control-label">คณะ</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" style="width:78%;" (change)="Faculty($event.target.value)">
+                                <option value="" selected="selected">(โปรดเลือกหมวดหมู่)</option>
+                                <option value="วิศวกรรมศาสตร์"  >วิศวกรรมศาสตร์</option>
+                                <option value="วิทยาศาสตร์"  >วิทยาศาสตร์</option>
+                                <option value="แพทย์ศาสตร์"  >แพทย์ศาสตร์</option>
+                                <option value="ธุรกิจ/การตลาด"   >ธุรกิจ/การตลาด/บัญชี</option>
+                                <option value="รัฐศาสตร์"   >รัฐศาสตร์</option>
+                                <option value="นิติศาสตร์"  >นิติศาสตร์</option>
+                            </select>
                         </div>
+                    </div>
+                    <div class="form-group" *ngIf="valueEducation == 'มหาวิทยาลัย' && valueFaculty == 'วิทยาศาสตร์'">
+                        <label for="category" class="col-sm-3 control-label">สาขาวิชา</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" style="width:78%;" (change)="Branch($event.target.value)">
+                                <option value="" selected="selected">(โปรดเลือกสาขาวิชา)</option>
+                                <option value="ฟิสิกส์"  >ฟิสิกส์</option>
+                                <option value="เคมี"  >เคมี</option>
+                                <option value="ชีววิทยา"  >ชีววิทยา</option>
+                                <option value="คณิตศาสตร์"  >คณิตศาสตร์</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="valueEducation == 'มัธยมปลาย'">
+                        <label for="category" class="col-sm-3 control-label">หมวดหมู่</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" style="width:78%;" (change)="Faculty($event.target.value)">
+                                <option value="" selected="selected">(โปรดเลือกหมวดหมู่)</option>
+                                <option value="GAT" >GAT</option>
+                                <option value="PAT"  >PAT</option>
+                                <option value="O-NET"  >O-NET</option>
+                                <option value="9 วิชาสามัญ"  >9 วิชาสามัญ</option>
+                                <option value="เตรียมสอบ"  >เตรียมสอบ</option>
+                                <option value="เตรียมทหาร/ตำรวจ"  >เตรียมทหาร/ตำรวจ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="valueEducation == 'มัธยมปลาย' && valueFaculty == 'เตรียมสอบ'">
+                        <label for="category" class="col-sm-3 control-label">รายวิชา</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" style="width:78%;" (change)="Branch($event.target.value)">
+                                <option value="" selected="selected">(โปรดเลือกรายวิชา)</option>
+                                <option value="ฟิสิกส์"  >ฟิสิกส์</option>
+                                <option value="เคมี"  >เคมี</option>
+                                <option value="ชีววิทยา"  >ชีววิทยา</option>
+                                <option value="คณิตศาสตร์"  >คณิตศาสตร์</option>
+                                <option value="ภาษาอังกฤษ" >ภาษาอังกฤษ</option>
+                                <option value="สังคม"  >สังคม</option>
+                                <option value="ภาษาไทย"  >ภาษาไทย</option>
+                            </select>
+                        </div>
+
                     </div>
 
                     <div class="form-group">
                         <label for="coverImg" class="col-sm-3 control-label">รูปปกหนังสือ 1 รูป</label>
                         <div class="col-sm-9">
                             <label class="btn btn-default" style="width:78%;">
-                                 <input type="file" (change)="selectFile($event)" >
+                                 <input type="file" (change)="selectFile($event)" accept="image/*">
+                                 <br>
+                                 <img *ngIf="url!=undefined" [src]="url" style="width:100px; height:100px; float: left"/>  
+                                 <br>  
                             </label>
                         </div>
                     </div>
@@ -127,10 +100,11 @@
                     <div class="form-group">
                         <label for="price2" class="col-sm-3 control-label">จำนวน</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" placeholder="จำนวนเล่ม" required [(ngModel)]="book.total" name="total" min="1" #total="ngModel" style="width:78%;">
+                            <input type="number" class="form-control" placeholder="จำนวนเล่ม" required pattern="[0-9]*" [(ngModel)]="book.total" name="total" min="1" #total="ngModel" style="width:78%;">
                             <div [hidden]="total.valid || total.pristine" class="alert alert-danger" style="width:78%;">
                                 <div [hidden]="!total.hasError('required')">กรุณาระบุจำนวน</div>
                                 <div [hidden]="!total.hasError('min')">กรุณาระบุจำนวน</div>
+                                <div [hidden]="!total.hasError('pattern')">ระบุจำนวนให้ถูกต้อง</div>
                             </div>
                         </div>
                     </div>
@@ -139,9 +113,10 @@
                     <div class="form-group">
                         <label for="price2" class="col-sm-3 control-label">ราคาที่ต้องการขาย</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" placeholder="ราคาที่ต้องการขาย" required [(ngModel)]="book.price2" name="price2" #price2="ngModel" style="width:78%;">
+                            <input type="text" class="form-control" placeholder="ราคาที่ต้องการขาย" required pattern="[0-9]*" [(ngModel)]="book.price2" name="price2" #price2="ngModel" style="width:78%;">
                             <div [hidden]="price2.valid || price2.pristine" class="alert alert-danger" style="width:78%;">
                                 <div [hidden]="!price2.hasError('required')">กรุณาระบุราคาที่ต้องการขาย</div>
+                                <div [hidden]="!price2.hasError('pattern')">ระบุราคาที่ต้องการขายให้ถูกต้อง</div>
                             </div>
                         </div>
                     </div>
@@ -149,9 +124,10 @@
                     <div class="form-group">
                         <label for="price1" class="col-sm-3 control-label">ราคามือ1</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" placeholder="ราคามือ1" required [(ngModel)]="book.price1" name="price1" #price1="ngModel" style="width:78%;">
+                            <input type="text" class="form-control" placeholder="ราคามือ1" required pattern="[0-9]*" [(ngModel)]="book.price1" name="price1" #price1="ngModel" style="width:78%;">
                             <div [hidden]="price1.valid || price1.pristine" class="alert alert-danger" style="width:78%;">
                                 <div [hidden]="!price1.hasError('required')">กรุณาระบุราคามือ1</div>
+                                <div [hidden]="!price1.hasError('pattern')">ระบุราคามือ 1 ให้ถูกต้อง</div>
                             </div>
                         </div>
                     </div>
@@ -179,28 +155,14 @@
 
                     <div class="form-group">
                         <label for="transport" class="col-sm-3 control-label">วิธีขนส่งสินค้า</label>
-                        <div class="col-sm-9" id="transport">
-                            <div class="checkbox checkbox-inline checkbox-warning">
-                                <input type="checkbox" id="inlineCheckbox13" value="Kerry" (change)="selectTransport($event.target.value)">
-                                <label for="inlineCheckbox13"> Kerry </label>
-                            </div>
-                            <div class="checkbox checkbox-inline checkbox-warning">
-                                <input type="checkbox" id="inlineCheckbox14" value="SCG" (change)="selectTransport($event.target.value)">
-                                <label for="inlineCheckbox14"> SCG  </label>
-                            </div>
-                            <div class="checkbox checkbox-inline checkbox-warning">
-                                <input type="checkbox" id="inlineCheckbox15" value="EMS" (change)="selectTransport($event.target.value)">
-                                <label for="inlineCheckbox15"> EMS </label>
-                            </div>
-                            <div class="checkbox checkbox-inline checkbox-warning">
-                                <input type="checkbox" id="inlineCheckbox16" value="ตีพิมพ์ลงทะเบียน" (change)="selectTransport($event.target.value)">
-                                <label for="inlineCheckbox16"> ตีพิมพ์ลงทะเบียน </label>
-                            </div>
-                            <div class="checkbox checkbox-inline checkbox-warning">
-                                <input type="checkbox" id="inlineCheckbox17" value="ลงทะเบียน" (change)="selectTransport($event.target.value)">
-                                <label for="inlineCheckbox17"> ลงทะเบียน </label>
-                            </div>
-
+                        <div class="col-sm-9">
+                            <select multiple class="form-control" name="transport" required [(ngModel)]="book.transport" #transport="ngModel" style="width:78%;">
+                                <option  value="Kerry">Kerry Express</option>
+                                <option  value="SCG">SCG Express</option>
+                                <option  value="EMS">ไปรษณีย์ EMS </option>
+                                <option  value="ตีพิมพ์แบบลงทะเบียน">ไปรษณีย์ตีพิมพ์แบบลงทะเบียน </option>
+                                <option  value="แบบลงทะเบียน">ไปรษณีย์แบบลงทะเบียน </option>
+                            </select>
                         </div>
 
                     </div>

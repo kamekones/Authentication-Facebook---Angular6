@@ -1,4 +1,4 @@
-import { FileUpload } from '../../FileUpload/fileupload';
+
 
 interface Bookinterface {
     namebook: string,
@@ -7,6 +7,8 @@ interface Bookinterface {
     price2: number,
     detail: string,
     condition: string,
+    transport: string,
+    category: {}
 
 }
 
@@ -17,6 +19,9 @@ export class Book implements Bookinterface {
     price2: number;
     detail: string;
     condition: string;
+    transport: string;
+    category: {};
+
     constructor(
         namebook: string,
         total: number,
@@ -24,6 +29,9 @@ export class Book implements Bookinterface {
         price2: number,
         detail: string,
         condition: string,
+        transport: string,
+        category: {}
+
     ) {
      }
 }

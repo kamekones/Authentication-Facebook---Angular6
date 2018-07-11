@@ -1,10 +1,11 @@
-<div class="panel panel-primary">
+<title *ngIf="editbook == ''"> รายการหนังสือ | Admin</title>
+<div class="panel panel-primary " *ngIf="editbook == ''">
     <div class="panel-heading">รายการหนังสือ</div>
     <div>
-        <div class="panel-body">
+        <div class="panel-body" id="list">
             <div class="card-book" *ngFor="let file of bookUploads |  paginate: { itemsPerPage: 3, currentPage: p }">
                 <button class="btn btn-danger btn-xs" style="float: right" (click)='deleteBook(file.key)'>ลบ</button>
-                <button class="btn btn-info btn-xs" style="float: right; margin-right: 1%;">แก้ไข</button>
+                <button class="btn btn-info btn-xs" style="float: right; margin-right: 1%;" (click)='editBook(file.key, "edit")'>แก้ไข</button>
                 <img src="{{file.url}}" alt="{{file.name}}" style="width:100px; height:100px; float: left" />
                 <p>{{file.namebook}}</p>
                 <p>ราคา: ฿{{file.price2}}.00</p>
@@ -12,5 +13,205 @@
             </div>
         </div>
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
+
+
+<!--///////////////////////////////////////////////////////////////////////////-->
+<title *ngIf="editbook == 'edit'"> แก้ไขหนังสือ | Admin</title>
+<div class="panel panel-default" *ngIf="editbook == 'edit'">
+    <div class="panel-heading">
+        แก้ไขหนังสือ
+    </div>
+    <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-body form-horizontal payment-form">
+                <form (ngSubmit)="editSave()" #editBookForm="ngForm">
+
+                    <div class="form-group">
+                        <label for="namebook" class="col-sm-3 control-label">ชื่อหนังสือ</label>
+                        <div class="col-sm-9">
+                            <input type="name" class="form-control" id="name" placeholder="ชื่อหนังสือ" required [(ngModel)]="book.namebook" name="namebook" #namebook="ngModel" style="width:78%;">
+                            <div [hidden]="namebook.valid || namebook.pristine" class="alert alert-danger" style="width:78%;">กรุณากรอกชื่อหนังสือ</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category" class="col-sm-3 control-label">ระดับการศึกษา</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" style="width:78%;" (change)="Education($event.target.value)" [(ngModel)]="valueEducation" required name="category.education" #category="ngModel">
+                                                <option value="" selected="selected">(โปรดเลือกหมวดหมู่)</option>
+                                                <option value="มหาวิทยาลัย" >มหาวิทยาลัย</option>
+                                                <option value="มัธยมปลาย">มัธยมปลาย</option>
+                                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="valueEducation == 'มหาวิทยาลัย'">
+                        <label for="category" class="col-sm-3 control-label">คณะ</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" style="width:78%;" (change)="Faculty($event.target.value)" [(ngModel)]="valueFaculty" required name="category.faculty" #category="ngModel">
+                                                <option value="" selected="selected">(โปรดเลือกหมวดหมู่)</option>
+                                                <option value="วิศวกรรมศาสตร์"  >วิศวกรรมศาสตร์</option>
+                                                <option value="วิทยาศาสตร์"  >วิทยาศาสตร์</option>
+                                                <option value="แพทย์ศาสตร์"  >แพทย์ศาสตร์</option>
+                                                <option value="ธุรกิจ/การตลาด"   >ธุรกิจ/การตลาด/บัญชี</option>
+                                                <option value="รัฐศาสตร์"   >รัฐศาสตร์</option>
+                                                <option value="นิติศาสตร์"  >นิติศาสตร์</option>
+                                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="valueEducation == 'มหาวิทยาลัย' && valueFaculty == 'วิทยาศาสตร์'">
+                        <label for="category" class="col-sm-3 control-label">สาขาวิชา</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" style="width:78%;" (change)="Branch($event.target.value)" [(ngModel)]="valueBranch" required name="category.branch" #category="ngModel">
+                                                <option value="" selected="selected">(โปรดเลือกสาขาวิชา)</option>
+                                                <option value="ฟิสิกส์"  >ฟิสิกส์</option>
+                                                <option value="เคมี"  >เคมี</option>
+                                                <option value="ชีววิทยา"  >ชีววิทยา</option>
+                                                <option value="คณิตศาสตร์"  >คณิตศาสตร์</option>
+                                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="valueEducation == 'มัธยมปลาย'">
+                        <label for="category" class="col-sm-3 control-label">หมวดหมู่</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" style="width:78%;" (change)="Faculty($event.target.value)" [(ngModel)]="valueFaculty" required name="category.faculty" #category="ngModel">
+                                                <option value="" selected="selected">(โปรดเลือกหมวดหมู่)</option>
+                                                <option value="GAT" >GAT</option>
+                                                <option value="PAT"  >PAT</option>
+                                                <option value="O-NET"  >O-NET</option>
+                                                <option value="9 วิชาสามัญ"  >9 วิชาสามัญ</option>
+                                                <option value="เตรียมสอบ"  >เตรียมสอบ</option>
+                                                <option value="เตรียมทหาร/ตำรวจ"  >เตรียมทหาร/ตำรวจ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="valueEducation == 'มัธยมปลาย' && valueFaculty == 'เตรียมสอบ'">
+                        <label for="category" class="col-sm-3 control-label">รายวิชา</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" style="width:78%;" (change)="Branch($event.target.value)" [(ngModel)]="valueBranch" required name="category.branch" #category="ngModel">
+                                    <option value="" selected="selected">(โปรดเลือกรายวิชา)</option>
+                                    <option value="ฟิสิกส์"  >ฟิสิกส์</option>
+                                    <option value="เคมี"  >เคมี</option>
+                                    <option value="ชีววิทยา"  >ชีววิทยา</option>
+                                    <option value="คณิตศาสตร์"  >คณิตศาสตร์</option>
+                                    <option value="ภาษาอังกฤษ" >ภาษาอังกฤษ</option>
+                                    <option value="สังคม"  >สังคม</option>
+                                    <option value="ภาษาไทย"  >ภาษาไทย</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coverImg" class="col-sm-3 control-label">รูปปกหนังสือ 1 รูป</label>
+                        <div class="col-sm-9">
+                            <label class="btn btn-default" style="width:78%;">
+                                <input type="file" (change)="selectFile($event)" >
+                                <br>
+                                <img *ngIf="url!=undefined" [src]="url" style="width:100px; height:100px; float: left"/> 
+                                <img *ngIf="url==undefined" src="{{this.book['url']}}" style="width:100px; height:100px; float: left">
+                                <br>
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="price2" class="col-sm-3 control-label">จำนวน</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" placeholder="จำนวนเล่ม" required pattern="[0-9]*" [(ngModel)]="book.total" name="total" min="1" #total="ngModel" style="width:78%;">
+                            <div [hidden]="total.valid || total.pristine" class="alert alert-danger" style="width:78%;">
+                                <div [hidden]="!total.hasError('required')">กรุณาระบุจำนวน</div>
+                                <div [hidden]="!total.hasError('min')">กรุณาระบุจำนวน</div>
+                                <div [hidden]="!total.hasError('pattern')">ระบุจำนวนให้ถูกต้อง</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="price2" class="col-sm-3 control-label">ราคาที่ต้องการขาย</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="ราคาที่ต้องการขาย" required pattern="[0-9]*" [(ngModel)]="book.price2" name="price2" #price2="ngModel" style="width:78%;">
+                            <div [hidden]="price2.valid || price2.pristine" class="alert alert-danger" style="width:78%;">
+                                <div [hidden]="!price2.hasError('required')">กรุณาระบุราคาที่ต้องการขาย</div>
+                                <div [hidden]="!price2.hasError('pattern')">ระบุราคาที่ต้องการขายให้ถูกต้อง</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price1" class="col-sm-3 control-label">ราคามือ1</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="ราคามือ1" required pattern="[0-9]*" [(ngModel)]="book.price1" name="price1" #price1="ngModel" style="width:78%;">
+                            <div [hidden]="price1.valid || price1.pristine" class="alert alert-danger" style="width:78%;">
+                                <div [hidden]="!price1.hasError('required')">กรุณาระบุราคามือ1</div>
+                                <div [hidden]="!price1.hasError('pattern')">ระบุราคามือ 1 ให้ถูกต้อง</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="condition" class="col-sm-3 control-label">สภาพหนังสือ</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" pattern="" class="form-control" name="condition" placeholder="โปรดอธิบายสภาพหนังสือ" required [(ngModel)]="book.condition" #condition="ngModel" style="width:78%;"></textarea>
+                            <div [hidden]="condition.valid || condition.pristine" class="alert alert-danger" style="width:78%;">
+                                <div [hidden]="!condition.hasError('required')">โปรดอธิบายสภาพหนังสือ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ถ้าเป็นมือ1 ค่อยหาย -->
+
+                    <div class="form-group">
+                        <label for="detail" class="col-sm-3 control-label">รายละเอียดหนังสือ</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" pattern="" class="form-control" name="detail" placeholder="โปรดอธิบายรายละเอียดหนังสือ" required [(ngModel)]="book.detail" #detail="ngModel" style="width:78%;"></textarea>
+                            <div [hidden]="detail.valid || detail.pristine" class="alert alert-danger" style="width:78%;">
+                                <div [hidden]="!detail.hasError('required')">โปรดอธิบายรายละเอียดหนังสือ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transport" class="col-sm-3 control-label">วิธีขนส่งสินค้า</label>
+                        <div class="col-sm-9">
+                            <select multiple class="form-control" name="transport" required [(ngModel)]="book.transport" #transport="ngModel" style="width:78%;">
+                                                <option  value="Kerry">Kerry Express</option>
+                                                <option  value="SCG">SCG Express</option>
+                                                <option  value="EMS">ไปรษณีย์ EMS </option>
+                                                <option  value="ตีพิมพ์แบบลงทะเบียน">ไปรษณีย์ตีพิมพ์แบบลงทะเบียน </option>
+                                                <option  value="แบบลงทะเบียน">ไปรษณีย์แบบลงทะเบียน </option>
+                                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <div *ngIf="currentFileUpload">
+                        <h4>รอสักครู่กำลังบันทึก...</h4>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}" style="width:78%;">
+                                {{progress.percentage}}%
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" id="btn-account">
+                        <div class="btn btn-outline-success" id="btn-account">
+                            <button type="submit" class="btn btn-success" [disabled]="!editBookForm.form.valid" (click)="editSave()">
+                                บันทึก
+                        </button>
+                        </div>
+                        <div class="btn btn-outline-danger" id="btn-danger">
+                            <button type="submit" class="btn btn-danger" (click)="cancalBook()">
+                                ยกเลิก
+                        </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

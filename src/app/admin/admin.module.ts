@@ -27,9 +27,10 @@ import { ModuleComponent } from './components/module/module.component';
 import { SellComponent } from './components/sell/sell.component';
 import { SettingComponent } from './components/setting/setting.component';
 import { TransportComponent } from './components/transport/transport.component';
-import { DetailsUploadComponent } from './components/detail-uploads/detail-upload.component'
-import { ListUploadComponent } from './components/list-uploads/list-upload.component'
-import { FormUploadComponent  } from './components/form-uploads/form-upload.component'
+import { DetailsUploadComponent } from './components/detail-uploads/detail-upload.component';
+import { ListUploadComponent } from './components/list-uploads/list-upload.component';
+import { FormUploadComponent  } from './components/form-uploads/form-upload.component';
+
 
 import { UploadFileService } from './services/upload.service';
 import { ApiService } from './services/api.service';
@@ -67,7 +68,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormUploadComponent,
     DetailsUploadComponent,
     ListComponent,
-    EqualValidator
+    EqualValidator,
+
    
   ],
   imports: [

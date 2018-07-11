@@ -28,7 +28,7 @@ export class AccountComponent implements OnInit {
   fname: any;
   lname: any;
   tel: any;
-  constructor(private db2: AngularFireDatabase) {
+  constructor(private db2: AngularFireDatabase,  private route: Router) {
     this.accountList = db2.list('users/' + this.uid + '/account');
   }
 
@@ -40,12 +40,13 @@ export class AccountComponent implements OnInit {
 
   edit(key) {
     this.keyWordEdit = key;
+    
   }
 
   accountSubmit() {
     this.keyWordEdit = '';
     this.submitted = true;
-    console.log(this.account)
+    // console.log(this.account)
     const path = '/users/' + this.uid + '/account';
     const userRef: AngularFireObject<any> = this.db2.object(path);
     const data = {
@@ -70,6 +71,7 @@ export class AccountComponent implements OnInit {
     this.accountList.snapshotChanges().map(actions => {
       return actions.map(action => ({ key: action.key, value: action.payload.val() }));
     }).subscribe(items => {
+      // console.log(items);
       this.account["email"] = this.email = items[0].value;
       this.account["fname"] = this.fname = items[1].value;
       this.account["lname"] = this.lname = items[3].value;

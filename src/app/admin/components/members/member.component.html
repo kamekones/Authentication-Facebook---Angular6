@@ -54,7 +54,7 @@
             <div class="table-responsive">
                 <table class="table table-striped" border="0">
                     <tbody *ngIf="countUser != 0">
-                        <tr *ngFor="let admin of adminList">
+                        <tr *ngFor="let admin of adminList |  paginate: { itemsPerPage: 3, currentPage: p }">
                             <th>{{admin.value.account.name}}</th>
                             <th>{{admin.value.account.email}}</th>
                             <th>
@@ -76,6 +76,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
         </div>
     </div>

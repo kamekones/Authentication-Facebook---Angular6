@@ -36,6 +36,7 @@ export class MemberComponent implements OnInit {
   uid = localStorage.getItem('uid');
   adminData: AngularFireList<any>;
   countUser: any;
+  p=1;
   constructor(private api: ApiService, private router: Router, private fb: FormBuilder, private db2: AngularFireDatabase) {
     // api.getCurrentLoggedIn();
     this.adminData = db2.list('users/');

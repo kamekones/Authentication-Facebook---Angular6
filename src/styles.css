@@ -2,7 +2,9 @@ body {
     font-family: 'Kanit', sans-serif;
 }
 
-p {
+p,
+h4,
+button {
     font-family: 'Kanit', sans-serif;
 }
 

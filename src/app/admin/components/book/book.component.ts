@@ -21,17 +21,17 @@ import swal from 'sweetalert2';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
-  book = new Book("", null, null, null, "", "");
+  book = new Book("", null, null, null, "", "", "", {});
   submitted = false;
-  valueCategory = "";
-  transport = [];
-  category = [];
+  valueEducation = "";
+  valueFaculty = "";
+  valueBranch = "";
+  url: any;
   selectedFiles: FileList
   currentFileUpload: FileUpload
-  progress: {percentage: number} = {percentage: 0}
-  formData;
-  formDataCover;
+  progress: { percentage: number } = { percentage: 0 }
   countTransport = 0;
+
   constructor(private bookService: BookFileService, private db: AngularFireDatabase, private route: Router) {
 
   }
@@ -40,34 +40,63 @@ export class BookComponent implements OnInit {
 
   }
 
-  categoty(key) {
-    this.valueCategory = key;
+  Education(value) {
+    this.valueEducation = value;
+    this.valueFaculty = '';
+    this.book['category'] = {
+      'education': value
+
+    }
   }
 
-  selectTransport(value) {
-    this.transport.push(value);
-    this.book['transport'] = this.transport
-    console.log(this.transport);
+  Faculty(value) {
+    this.valueFaculty = value;
+    this.book['category'] = {
+      'education': this.valueEducation,
+      'faculty': value
 
+    }
   }
 
-  selectCategory(value) {
-    this.category.push(value);
-    this.book['category'] = this.category
-    console.log(this.category)
+  Branch(value) {
+    this.valueBranch = value;
+    this.book['category'] = {
+      'education': this.valueEducation,
+      'faculty': this.valueFaculty,
+      'branch': value
 
+    }
   }
+
 
 
   selectFile(event) {
-    this.selectedFiles = event.target.files; 
+    this.selectedFiles = event.target.files;
+    var reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.url = event.target.result;
+    }
+
+    reader.readAsDataURL(event.target.files[0]);
   }
+
 
 
   addBookSubmit() {
     this.submitted = true;
-    this.book['inStock'] = true;
-    this.upload()
+    console.log(this.book);
+    if (this.selectedFiles == undefined) {
+      swal({
+        position: 'center',
+        type: 'error',
+        title: 'กรุณาอัพโหลดรูปภาพ',
+        showConfirmButton: false,
+        timer: 1000,
+      })
+    } else {
+      this.upload()
+    }
+
   }
 
   upload() {
@@ -77,7 +106,7 @@ export class BookComponent implements OnInit {
   }
 
 
-  pushFileToStorage(fileUpload, progress: {percentage: number}) {
+  pushFileToStorage(fileUpload, progress: { percentage: number }) {
     const storageRef = firebase.storage().ref();
     const uploadTask = storageRef.child(`book/${fileUpload.file.name}`).put(fileUpload.file);
 
@@ -97,13 +126,16 @@ export class BookComponent implements OnInit {
         fileUpload.name = fileUpload.file.name
         this.book['name'] = fileUpload.name
         this.book['url'] = fileUpload.url
+        this.book['inStock'] = true
         this.saveFileData(this.book)
+
+
       }
     );
   }
 
   private saveFileData(fileUpload) {
-    this.db.list(`books/`).push(fileUpload).then(()=>{
+    this.db.list(`books/`).push(fileUpload).then(() => {
       swal({
         position: 'center',
         type: 'success',
@@ -112,10 +144,10 @@ export class BookComponent implements OnInit {
         timer: 1000,
       })
       this.route.navigate(['admin/list'])
-    })  
+    })
   }
 
-  
+
 
 
 
